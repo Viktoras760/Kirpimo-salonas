@@ -63,7 +63,7 @@
                   </div>
 
                   <a class="small text-muted" href="#!">Pamiršote slaptažodį?</a>
-                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Neturite paskyros? <a href="#!"
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Neturite paskyros? <a href="register.php"
                       style="color: #393f81;">Registruokitės čia</a></p>
                 </form>
 
