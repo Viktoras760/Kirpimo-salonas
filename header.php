@@ -1,3 +1,8 @@
+<?php
+// Initialize the session
+session_start();
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +35,12 @@
         <li class="nav-item">
           <a class="nav-link mx-2" href="#">Kontaktai</a>
         </li>
+
+
+        <?php // Check if the user is logged in
+          if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ ?>
+
+
       </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
         <li class="nav-item mx-2">
@@ -42,3 +53,40 @@
     </div>
   </div>
 </nav>
+<?php } elseif($_SESSION["role"] == 'Client'){ ?>
+    <li class="nav-item">
+      <a class="nav-link mx-2" href="#">Kirpimų istorija</a>
+    </li>
+  </ul>
+      <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra<i class="fab fa-google-plus-square"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti<i class="fab fa-twitter"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<?php } elseif($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?>
+    <li class="nav-item">
+      <a class="nav-link mx-2" href="#">Kirpimų istorija</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link mx-2" href="#">Naudotojų valdymas</a>
+    </li>
+  </ul>
+      <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra<i class="fab fa-google-plus-square"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti<i class="fab fa-twitter"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<?php } ?>
+
