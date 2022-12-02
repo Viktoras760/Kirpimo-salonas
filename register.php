@@ -12,102 +12,210 @@
 
   // Processing form data when form is submitted
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-  //if (isset($_REQUEST['name'])) {
 
-    //$sql = "INSERT INTO users (name, surname, personal_code, gender, email, role, password) VALUES ('$name', '$surname', 48946546555, 'Female', '$email', 'Barber', '$password')";
-    //$result = mysqli_query($mysqli, $sql);
-      // Validate name
-      if(empty(trim($_POST["name"]))){
-          $name_err = "Please enter a name.";
-      } elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["name"]))){
-          $name_err = "Name can only contain letters.";
-      } else{
-          // Prepare a select statement
-          $sql = "SELECT personal_code FROM users WHERE name = ?";
-          
-          if($stmt = $mysqli->prepare($sql)){
-              // Bind variables to the prepared statement as parameters
-              $stmt->bind_param("s", $param_name);
-              
-              // Set parameters
-              $param_name = trim($_POST["name"]);
-              
-              // Attempt to execute the prepared statement
-              if($stmt->execute()){
-                  // store result
-                  $stmt->store_result();
-                  
-                  if($stmt->num_rows == 1){
-                      $name_err = "This name is already taken.";
-                  } else{
-                      $name = trim($_POST["name"]);
-                  }
-              } else{
-                  echo "Oops! Something went wrong. Please try again later.";
-              }
-  
-              // Close statement
-              $stmt->close();
-          }
-      }
+    // Validate name
+    if(empty(trim($_POST["name"])))
+    {
+      $name_err = "Įveskite vardą.";
+    } 
 
+    elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["name"])))
+    {
+      $name_err = "Vardas turi būti sudarytas tik iš raidžių.";
+    }
 
+    else
+    {
+      $name = trim($_POST["name"]);
+    }
 
-      $name = $param_name = trim($_POST["name"]);
-      $surname = $param_surname = trim($_POST["surname"]);
-      $gender = $param_gender = trim($_POST["gender"]);
-      $email = $param_email = trim($_POST["email"]);
-      $password = $param_password = trim($_POST["password"]);
-      $personal_code = $param_personal_code = trim($_POST["personal_code"]);
-      $param_role = 'Client';
-      echo ("$name, $surname, $gender, $personal_code, $email, $password, $role");
+    //------------------------------------------------------------------------------------
+    //Validate surname
+    if(empty(trim($_POST["surname"])))
+    {
+      $surname_err = "Įveskite pavardę.";
+    } 
 
+    elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["surname"])))
+    {
+      $surname_err = "Pavardė turi būti sudaryta tik iš raidžių.";
+    }
 
+    else
+    {
+      $surname = trim($_POST["surname"]);
+    }
 
-      // Validate password
-      if(empty(trim($_POST["password"]))){
-          $password_err = "Please enter a password.";    
-      } elseif(strlen(trim($_POST["password"])) < 6){
-          $password_err = "Password must have atleast 6 characters.";
-      } else{
-          $password = trim($_POST["password"]);
-      }
+    //------------------------------------------------------------------------------------
+    //Validate personal code
+    if(empty(trim($_POST["personal_code"])))
+    {
+      $personal_code_err = "Įveskite asmens kodą.";
+    }
+
+    elseif(!preg_match('/^[0-9]+$/', trim($_POST["personal_code"])))
+    {
+      $personal_code_err = "Asmens kodas turi būti sudarytas tik iš skaičių.";
+    }
+
+    elseif(strlen((string) trim($_POST["personal_code"])) != 11)
+    {
+      $personal_code_err = "Asmens kodas turi būti sudarytas iš 11 skaičių.";
+    }
+
+    else
+    {
+      // Prepare a select statement
+      $sql = "SELECT * FROM users WHERE personal_code = ?";
       
-      // Check input errors before inserting in database
-      if(empty($name_err) && empty($surname_err) && empty($gender_err) && empty($personal_code_err) && empty($email_err) && empty($password_err)){
+      if($stmt = $mysqli->prepare($sql))
+      {
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param("s", $param_personal_code);
+        
+        // Set parameters
+        $param_personal_code = trim($_POST["personal_code"]);
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute())
+        {
+          // store result
+          $stmt->store_result();
           
-          // Prepare an insert statement
-          $sql = "INSERT INTO users (name, surname, personal_code, gender, email, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
-           
-          if($stmt = $mysqli->prepare($sql)){
-              // Bind variables to the prepared statement as parameters
-              $stmt->bind_param("sssssss", $param_name, $param_surname, $param_personal_code, $param_gender, $param_email, $param_role, $param_password);
-              
-              // Set parameters
-              $param_name = $name;
-              $param_surname = $surname;
-              $param_personal_code = $personal_code;
-              $param_gender = $gender;
-              $param_email = $email;
-              $param_role = 'Client';
-              $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-              
-              //$stmt->bind_param( $param_name, $param_surname, $param_personal_code, $param_gender, $param_email, $param_role, $param_password);
-              // Attempt to execute the prepared statement
-              if($stmt->execute()){
-                  // Redirect to login page
-                  header("location: login.php");
-              } else{
-                  echo "Oops! Something went wrong. Please try again later.";
-              }
-  
-              // Close statement
-              $stmt->close();
+          if($stmt->num_rows == 1)
+          {
+            $personal_code_err = "Paskyra su tokiu asmens kodu jau egzistuoja.";
+          } 
+
+          else
+          {
+            $personal_code = trim($_POST["personal_code"]);
           }
+
+        } 
+        
+        else
+        {
+          echo "Įvyko klaida! Pabandykite dar kartą.";
+        }
+
+        // Close statement
+        $stmt->close();
       }
+    }
+
+    //------------------------------------------------------------------------------------
+    //Validate gender
+    if(empty(trim($_POST["gender"])))
+    {
+      $gender_err = "Pasirinkite lytį.";    
+    } 
+
+    else
+    {
+      $gender = trim($_POST["gender"]);
+    }
+
+    //------------------------------------------------------------------------------------
+    // Validate email
+    if(empty(trim($_POST["email"])))
+    {
+      $email_err = "Įveskite elektroninį paštą.";    
+    }
+
+    else
+    {
+      // Prepare a select statement
+      $sql = "SELECT * FROM users WHERE email = ?";
       
-      // Close connection
-      $mysqli->close();
+      if($stmt = $mysqli->prepare($sql))
+      {
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param("s", $param_email);
+        
+        // Set parameters
+        $param_email = trim($_POST["email"]);
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute())
+        {
+          // store result
+          $stmt->store_result();
+          
+          if($stmt->num_rows == 1)
+          {
+            $email_err = "Šis elektroninis paštas jau yra surištas su kita paskyra.";
+          } 
+
+          else
+          {
+            $email = trim($_POST["email"]);
+          }
+
+        } 
+        
+        else
+        {
+          echo "Įvyko klaida! Pabandykite dar kartą.";
+        }
+
+        // Close statement
+        $stmt->close();
+      }
+    }
+
+    //------------------------------------------------------------------------------------
+    // Validate password
+    if(empty(trim($_POST["password"])))
+    {
+      $password_err = "Įveskite slaptažodį.";    
+    } 
+
+    elseif(strlen(trim($_POST["password"])) < 6)
+    {
+      $password_err = "Slaptažodis turi būti bent 6 simbolių ilgio.";
+    } 
+
+    else
+    {
+      $password = trim($_POST["password"]);
+    }
+
+    //------------------------------------------------------------------------------------
+    // Check input errors before inserting in database
+    if(empty($name_err) && empty($surname_err) && empty($gender_err) && empty($personal_code_err) && empty($email_err) && empty($password_err)){
+        
+      // Prepare an insert statement
+      $sql = "INSERT INTO users (name, surname, personal_code, gender, email, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+      if($stmt = $mysqli->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param("sssssss", $param_name, $param_surname, $param_personal_code, $param_gender, $param_email, $param_role, $param_password);
+        
+        // Set parameters
+        $param_name = $name;
+        $param_surname = $surname;
+        $param_personal_code = $personal_code;
+        $param_gender = $gender;
+        $param_email = $email;
+        $param_role = 'Client';
+        $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+          // Redirect to login page
+          header("location: login.php");
+        } else{
+          echo "Įvyko klaida, pabandykite užsiregistruotis dar kartą!";
+        }
+
+        // Close statement
+        $stmt->close();
+      }
+    }
+    
+    // Close connection
+    $mysqli->close();
   }
 ?>
    
@@ -121,7 +229,7 @@
       </style>
   </head>
   <body>
-    <form class="vh-100" style="background-color: #9A616D;" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <section class="vh-100" style="background-color: #9A616D;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
@@ -133,7 +241,7 @@
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                    <form>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         
@@ -142,24 +250,51 @@
 
                       <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Susikūrkite naują paskyrą</h5>
 
+                      <?php if(!empty($name_err) ) { ?>
+         
+                        <div class="alert alert-danger"><?php echo $name_err; ?></div>
+         
+                      <?php } elseif (!empty($surname_err)) { ?>
+
+                        <div class="alert alert-danger"><?php echo $surname_err; ?></div>
+
+                      <?php } elseif(!empty($gender_err) ) { ?>
+
+                        <div class="alert alert-danger"><?php echo $gender_err; ?></div>
+
+                      <?php } elseif(!empty($personal_code_err) ) { ?>
+
+                        <div class="alert alert-danger"><?php echo $personal_code_err; ?></div>
+
+                      <?php } elseif(!empty($email_err) ) { ?>
+
+                        <div class="alert alert-danger"><?php echo $email_err; ?></div>
+
+                      <?php } elseif(!empty($password_err) ) { ?>
+
+                        <div class="alert alert-danger"><?php echo $password_err; ?></div>
+
+                      <?php } ?>
+                      
                       <div class="form-outline mb-4">
                         <label class="form-label">Vardas</label>
-                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control <?php echo (!empty($name_err)) ? 'netinkamas' : ''; ?>" value="<?php echo $name; ?>" />
+                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg <?php echo (!empty($name_err)) ? 'netinkamas' : ''; ?>" value="<?php echo $name; ?>" />
                         <span class="invalid-feedback"><?php echo $name_err; ?></span>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Pavardė</label>
-                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg <?php echo (!empty($surname_err)) ? 'netinkama' : ''; ?>" value="<?php echo $surname; ?>" required/>
+                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg <?php echo (!empty($surname_err)) ? 'netinkama' : ''; ?>" value="<?php echo $surname; ?>"/>
                         <span class="invalid-feedback"><?php echo $password_err; ?></span>
                       </div>
 
                       <div class="form-outline mb-4">
                       <label for="gender">Lytis:</label>
                         <select name="gender" id="gender">
-                            <option value="Male" <?php $gender = "Male"; ?>>Vyras</option>
-                            <option value="Female" <?php $gender = "Female"; ?>>Moteris</option>
-                            <option value="Other" <?php $gender = "Other"; ?>>Kita</option>
+                          <option value="" <?php $gender = ""; ?>> </option>
+                          <option value="Male" <?php $gender = "Male"; ?>>Vyras</option>
+                          <option value="Female" <?php $gender = "Female"; ?>>Moteris</option>
+                          <option value="Other" <?php $gender = "Other"; ?>>Kita</option>
                         </select>
                         <span class="invalid-feedback"><?php echo $gender_err; ?></span>
                       </div>
@@ -172,13 +307,13 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">El. paštas</label>
-                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" class="form-control form-control-lg <?php echo (!empty($email_err)) ? 'Netinkamas' : ''; ?>" value="<?php echo $email; ?>"/>
+                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg <?php echo (!empty($email_err)) ? 'Netinkamas' : ''; ?>" value="<?php echo $email; ?>"/>
                         <span class="invalid-feedback"><?php echo $email_err; ?></span>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Slaptažodis</label>
-                        <input type="password" name="password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg <?php echo (!empty($password_err)) ? 'Netinkamas slaptažodis' : ''; ?>" value="<?php echo $password; ?>" />
+                        <input type="password" name="password" autocomplete="new-password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg <?php echo (!empty($password_err)) ? 'Netinkamas slaptažodis' : ''; ?>" value="<?php echo $password; ?>" />
                         <span class="invalid-feedback"><?php echo $password_err; ?></span>
                       </div>
 
@@ -195,6 +330,6 @@
           </div>
         </div>
       </div>
-    </form>
+    </section>
   </body>
 </html>
