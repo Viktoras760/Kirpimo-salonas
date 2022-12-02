@@ -224,8 +224,8 @@
   <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
-          body{ font: 14px sans-serif; }
-          .wrapper{ width: 360px; padding: 20px; }
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
       </style>
   </head>
   <body>
@@ -241,7 +241,7 @@
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <form method="post">
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         
@@ -278,14 +278,12 @@
                       
                       <div class="form-outline mb-4">
                         <label class="form-label">Vardas</label>
-                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg <?php echo (!empty($name_err)) ? 'netinkamas' : ''; ?>" value="<?php echo $name; ?>" />
-                        <span class="invalid-feedback"><?php echo $name_err; ?></span>
+                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg " value="<?php echo $name; ?>" />
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Pavardė</label>
-                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg <?php echo (!empty($surname_err)) ? 'netinkama' : ''; ?>" value="<?php echo $surname; ?>"/>
-                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg " value="<?php echo $surname; ?>"/>
                       </div>
 
                       <div class="form-outline mb-4">
@@ -296,25 +294,21 @@
                           <option value="Female" <?php $gender = "Female"; ?>>Moteris</option>
                           <option value="Other" <?php $gender = "Other"; ?>>Kita</option>
                         </select>
-                        <span class="invalid-feedback"><?php echo $gender_err; ?></span>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Asmens kodas</label>
-                        <input type="number" name="personal_code" placeholder = "Įveskite savo asmens kodą" class="form-control form-control-lg <?php echo (!empty($personal_code_err)) ? 'netinkama' : ''; ?>" value="<?php echo $personal_code; ?>"/>
-                        <span class="invalid-feedback"><?php echo $personal_code_err; ?></span>
+                        <input type="number" name="personal_code" placeholder = "Įveskite savo asmens kodą" class="form-control form-control-lg " value="<?php echo $personal_code; ?>"/>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">El. paštas</label>
-                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg <?php echo (!empty($email_err)) ? 'Netinkamas' : ''; ?>" value="<?php echo $email; ?>"/>
-                        <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg " value="<?php echo $email; ?>"/>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Slaptažodis</label>
-                        <input type="password" name="password" autocomplete="new-password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg <?php echo (!empty($password_err)) ? 'Netinkamas slaptažodis' : ''; ?>" value="<?php echo $password; ?>" />
-                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        <input type="password" name="password" autocomplete="new-password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg" value="<?php echo $password; ?>" />
                       </div>
 
                       <div class="pt-1 mb-4">
