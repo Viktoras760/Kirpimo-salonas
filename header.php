@@ -41,10 +41,10 @@ session_start();
       </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="register.php" target="blank">Kurti paskyrą<i class="fab fa-google-plus-square"></i></a>
+          <a class="nav-link text-light h5" href="register.php" target="blank">Kurti paskyrą</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="login.php" target="blank">Prisijungti<i class="fab fa-twitter"></i></a>
+          <a class="nav-link text-light h5" href="login.php" target="blank">Prisijungti</a>
         </li>
       </ul>
     </div>
@@ -57,10 +57,10 @@ session_start();
   </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra<i class="fab fa-google-plus-square"></i></a>
+          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti<i class="fab fa-twitter"></i></a>
+          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti</a>
         </li>
       </ul>
     </div>
@@ -68,18 +68,18 @@ session_start();
 </nav>
 <?php } elseif($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?>
     <li class="nav-item">
-      <a class="nav-link mx-2" href="#">Kirpimų istorija</a>
+      <a class="nav-link mx-2" href="schedule.php">Kirpimų grafikas</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link mx-2" href="#">Naudotojų valdymas</a>
+      <a class="nav-link mx-2" href="users.php">Naudotojų valdymas</a>
     </li>
   </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra<i class="fab fa-google-plus-square"></i></a>
+          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti<i class="fab fa-twitter"></i></a>
+          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti</a>
         </li>
       </ul>
     </div>
