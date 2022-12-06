@@ -13,8 +13,11 @@ include_once 'header.php';
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-  <section class="vh-100" style="background-color: #9A616D;">
-      
-    </section>
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container h-100">
+
+        </div>
+        </section>
     </body>
+    <?php include_once "footer.php"; ?>
 </html>

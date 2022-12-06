@@ -20,7 +20,6 @@ include_once 'header.php';
           <div class="col col-xl-10">
             <div class="card" style="border-radius: 1rem;">
               <div class="row g-0">
-
                 <div class="col-md-4 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
                         <p><strong>V & R </strong> Kirpykla</p>
