@@ -1,12 +1,137 @@
-<?php 
+<?php
+  //include header
+  include_once 'header.php';
+  // Include config file
+  require_once "config.php";
+   
+  // Define variables and initialize with empty values
+  $name_err = $price_err = $duration_err = $barber_err = $description_err = $password_err = "";
 
-include_once 'header.php';
-require_once "config.php";
+  if ($_SERVER['HTTP_REFERER'] == "http://localhost/kirpimo-salonas/auth_services.php"){
+    $serviceId = (int)$_POST['id'];
+    $_SESSION['temp'] = $serviceId;
+    $_SERVER["REQUEST_METHOD"] == "GET";
+  }
 
-$result = mysqli_query($mysqli,"SELECT * FROM services");
+  $serviceId = $_SESSION['temp'];
+
+
+
+  $service = mysqli_query($mysqli,"SELECT * FROM services WHERE id_Services = '$serviceId'");
+  $row = mysqli_fetch_array($service);
+
+  $_SESSION['serBarber'] = $us = $row['fk_Barber_code'];
+
+  $barb2 = mysqli_query($mysqli,"SELECT * FROM users WHERE Personal_code = '$us'");
+  $row2 = mysqli_fetch_array($barb2);
+
+  $_SESSION['serName'] = $name = $row['Name'];
+  $_SESSION['serPrice'] = $price = $row['Price'];
+  $_SESSION['serDuration'] = $duration = $row['Duration'];
+  $_SESSION['serDescription'] = $description = $row['Description'];
+  $barber1 = $row2['Name'];
+  
+  if($_SESSION["role"] == 'Barber'){
+    $barber = $_SESSION['personal_code'];
+  }
+  $barb = mysqli_query($mysqli,"SELECT * FROM users");
+
+  if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] != "http://localhost/kirpimo-salonas/auth_services.php"){
+
+    // Validate name
+    if(empty(trim($_POST["name"])))
+    {
+      $name_err = "Įveskite pavadinimą.";
+    } 
+
+    elseif(!preg_match('/^[a-zA-ZĄąČčĘęĖėĮįŠšŲųŪūŽž\s]*$/', trim($_POST["name"])))
+    {
+        
+      $name_err = "Pavadinimas turi būti sudarytas tik iš raidžių ir tarpų.";
+    }
+
+    else
+    {
+      $name = trim($_POST["name"]);
+    }
+
+    //------------------------------------------------------------------------------------
+    //Validate price
+    if(empty(trim($_POST["price"])))
+    {
+      $price_err = "Įveskite kainą.";
+    } 
+
+    elseif(!preg_match('/^[0-9]+$/', trim($_POST["price"])))
+    {
+      $price_err = "Kaina turi būti sudaryta tik iš skaičių.";
+    }
+
+    else
+    {
+      $price = trim($_POST["price"]);
+    }
+
+    //------------------------------------------------------------------------------------
+    //Validate paslaugos trukmę
+    if(empty(trim($_POST["duration"])))
+    {
+      $duration_err = "Įveskite paslaugos trukmę.";
+    }
+
+    elseif((trim($_POST["duration"])) < 10)
+    {
+      $duration_err = "Trukmė privalo būti didesnė už 10 minučių.";
+    }
+
+    else {
+        $duration = trim($_POST["duration"]);
+    }
+
+    //------------------------------------------------------------------------------------
+    //Validate aprašymą
+
+    $description = trim($_POST["description"]);
+
+    //------------------------------------------------------------------------------------
+    //Validate barber
+    if($_SESSION["role"] == 'Admin'){
+        if(empty(trim($_POST["barber"])))
+        {
+            $barber_err = "Pasirinkite kirpėją.";    
+        } 
+
+        else
+        {
+            $barber = trim($_POST["barber"]);
+        }
+    }
+    //------------------------------------------------------------------------------------
+// Check input errors before inserting in database
+
+    // Prepare an insert statement
+    echo $serviceId = $_SESSION['temp'];
+    echo $param_name = $name;
+    echo $param_price = $price;
+    echo $param_duration = $duration;
+    echo $param_description = $description;
+    echo $param_barber = $barber;
+
+    $update = mysqli_query($mysqli,"UPDATE services SET Name = '$param_name', Price = '$param_price', Duration = '$param_duration', Description = '$param_description', fk_Barber_code = '$param_barber' WHERE id_Services = $serviceId");
+    
+    if (!$update)
+    {
+        //header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+    else 
+    {
+       $_SESSION['temp'] = NULL;
+        header("Location: auth_services.php");
+    }
+    
+  }
 ?>
-
-
+   
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,92 +142,89 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
       </style>
   </head>
   <body>
-    <section class="vh-100" style="background-color: #9A616D;">
-      <div class="container py-5 h-100">
+    <section class="vh-100" style="background-image:url(https://img.freepik.com/free-photo/vintage-wooden-table-with-beard-shaping-salon-tools_53876-127084.jpg?w=2000)">
+      <div class="container h-100" style="background-color:#e0e0b6; width: 5000px">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
-            <div class="card" style="border-radius: 1rem;">
-              <div class="row g-0">
-                <div class="col-md-2 col-lg-5 d-none d-md-block">
-                  <img src="images/n.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" />
-                </div>
+            <div class="card align-items-center" style="border-radius: 1rem; margin: auto;">
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                    <form method="post">
+                    <form method="POST">
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         
-                        <span class="h1 fw-bold mb-0">Paskyros kūrimas</span>
+                        <span class="h1 fw-bold mb-0">Paslaugos kūrimas</span>
                       </div>
 
-                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Susikūrkite naują paskyrą</h5>
+                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Pridėkite naują paslaugą</h5>
 
                       <?php if(!empty($name_err) ) { ?>
          
                         <div class="alert alert-danger"><?php echo $name_err; ?></div>
          
-                      <?php } elseif (!empty($surname_err)) { ?>
+                      <?php } elseif (!empty($price_err)) { ?>
 
-                        <div class="alert alert-danger"><?php echo $surname_err; ?></div>
+                        <div class="alert alert-danger"><?php echo $price_err; ?></div>
 
-                      <?php } elseif(!empty($gender_err) ) { ?>
+                      <?php } elseif(!empty($duration_err) ) { ?>
 
-                        <div class="alert alert-danger"><?php echo $gender_err; ?></div>
+                        <div class="alert alert-danger"><?php echo $duration_err; ?></div>
 
-                      <?php } elseif(!empty($personal_code_err) ) { ?>
+                      <?php } elseif(!empty($description_err) ) { ?>
 
-                        <div class="alert alert-danger"><?php echo $personal_code_err; ?></div>
+                        <div class="alert alert-danger"><?php echo $description_err; ?></div>
 
-                      <?php } elseif(!empty($email_err) ) { ?>
+                        <?php } elseif(!empty($barber_err) ) { ?>
 
-                        <div class="alert alert-danger"><?php echo $email_err; ?></div>
-
-                      <?php } elseif(!empty($password_err) ) { ?>
-
-                        <div class="alert alert-danger"><?php echo $password_err; ?></div>
+                        <div class="alert alert-danger"><?php echo $barber_err; ?></div>
 
                       <?php } ?>
                       
                       <div class="form-outline mb-4">
-                        <label class="form-label">Vardas</label>
-                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                        <label class="form-label">Paslaugos pavadinimas</label>
+                        <input type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" />
                       </div>
 
                       <div class="form-outline mb-4">
-                        <label class="form-label">Pavardė</label>
-                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg " value="<?php echo $surname; ?>"/>
+                        <label class="form-label">Kaina</label>
+                        <input type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>"/>
                       </div>
 
                       <div class="form-outline mb-4">
-                      <label for="gender">Lytis:</label>
-                        <select name="gender" id="gender">
-                          <option value="" <?php $gender = ""; ?>> </option>
-                          <option value="Male" <?php $gender = "Male"; ?>>Vyras</option>
-                          <option value="Female" <?php $gender = "Female"; ?>>Moteris</option>
-                          <option value="Other" <?php $gender = "Other"; ?>>Kita</option>
+                        <label class="form-label">Trukmė</label>
+                        <input type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>"/>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label">Aprašymas</label>
+                        <input type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $description; ?>"/>
+                      </div>
+
+                      <?php if($_SESSION["role"] == 'Admin'){ ?>
+                      <div class="form-outline mb-4">
+                      <label for="barber">Kirpėjas:</label>
+                        <select name="barber" id="barber">
+                          <option value="" <?php $barber = ""; ?>> </option>
+                          <?php while($bar = mysqli_fetch_array($barb)){ ?>
+                          <option value="<?php echo $bar['Personal_code'];?>"><?php echo $bar['Name']; ?></option>
+                          <?php } ?>
                         </select>
                       </div>
+                      <?php } 
+                      
+                      else {?>
 
                       <div class="form-outline mb-4">
-                        <label class="form-label">Asmens kodas</label>
-                        <input type="number" name="personal_code" placeholder = "Įveskite savo asmens kodą" class="form-control form-control-lg " value="<?php echo $personal_code; ?>"/>
+                        <label class="form-label">Kirpėjas</label>
+                        <input type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <label class="form-label">El. paštas</label>
-                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg " value="<?php echo $email; ?>"/>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <label class="form-label">Slaptažodis</label>
-                        <input type="password" name="password" autocomplete="new-password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg" value="<?php echo $password; ?>" />
-                      </div>
+                      <?php } ?>
 
                       <div class="pt-1 mb-4">
-                        <input type="submit" name="submit" class="btn btn-dark btn-lg btn-block" value="Patvirtinti">  
+                        <input type="submit" name="submit"  class="btn btn-dark btn-lg btn-block" value="Pridėti">  
                       </div>
-                      <p>Jau turite paskyrą? <a href="login.php">Prisijunkite čia</a>.</p>
                     </form>
 
                   </div>
