@@ -20,7 +20,8 @@ session_start();
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
- 
+    <?php // Check if the user is logged in
+          if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ ?>
     <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
@@ -32,12 +33,6 @@ session_start();
         <li class="nav-item">
           <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
         </li>
-
-
-        <?php // Check if the user is logged in
-          if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){ ?>
-
-
       </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
         <li class="nav-item mx-2">
@@ -51,6 +46,17 @@ session_start();
   </div>
 </nav>
 <?php } elseif($_SESSION["role"] == 'Client'){ ?>
+  <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="#">Registruotis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="auth_services.php">Paslaugos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
+        </li>
     <li class="nav-item">
       <a class="nav-link mx-2" href="reservations.php">Mano rezervacijos</a>
     </li>
@@ -67,6 +73,20 @@ session_start();
   </div>
 </nav>
 <?php } elseif($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?>
+  <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="#">Registruotis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="auth_services.php">Paslaugos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
+        </li>
+        <li class="nav-item">
+      <a class="nav-link mx-2" href="reservations.php">Mano rezervacijos</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link mx-2" href="schedule.php">Kirpimų grafikas</a>
     </li>

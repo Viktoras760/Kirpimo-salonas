@@ -1,7 +1,9 @@
 <?php 
-
 include_once 'header.php';
+require_once "config.php";
 
+
+$result = mysqli_query($mysqli,"SELECT * FROM services");
 ?>
 
 <!DOCTYPE html>
@@ -21,19 +23,25 @@ include_once 'header.php';
                             <div class="row g-0">
                                 <h3 style="text-align: center;">Paslaugos ir jų kainos </h3>
                                 
-                                <table class="kainutabl">
+                    
+                                <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                     <thead>
-                                        <tr>
+                                        <tr style="height:60px;background:#FFED86;font-size:16px;">
                                             <th>Paslauga</th>
                                             <th>Paslaugos kainas (Eur)</th>
-                                            <th>Viktorijos kainos</th>
-                                            <th>Ričio kainos</th>
                                             <th>Trukmė (min)</th>
-                                            <th><?php if($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?> <button type="button" href="edit_service.php" >Redaguoti paslaugą</button> <button type="button" >Pašalinti paslaugą</button> <?php } ?></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            
+                                        <?php while($row = mysqli_fetch_array($result)){ ?>
+                                    <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
+                  	                    <td title="Paslauga"> <?php echo $row['Name'] ?> </td>
+                                        <td title="Paslaugos kainas (Eur)"> <?php echo $row['Price'] ?> </td>
+                                        <td title="Trukmė (min)"> <?php echo $row['Duration'] ?> </td>
+                                        <td><a href="edit_service.php"><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Paslaugos aprašymas"></input></a></td>
+                                    </tr> 
+                                    <?php } ?> 
                                     </tbody>
                                 </table>
                             </div>
