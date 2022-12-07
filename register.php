@@ -19,7 +19,7 @@
       $name_err = "Įveskite vardą.";
     } 
 
-    elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["name"])))
+    elseif(!preg_match('/^[a-zA-ZĄąČčĘęĖėĮįŠšŲųŪūŽž]+$/', trim($_POST["name"])))
     {
       $name_err = "Vardas turi būti sudarytas tik iš raidžių.";
     }
@@ -36,7 +36,7 @@
       $surname_err = "Įveskite pavardę.";
     } 
 
-    elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["surname"])))
+    elseif(!preg_match('/^[a-zA-ZĄąČčĘęĖėĮįŠšŲųŪūŽž]+$/', trim($_POST["surname"])))
     {
       $surname_err = "Pavardė turi būti sudaryta tik iš raidžių.";
     }

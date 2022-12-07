@@ -13,7 +13,6 @@ if(isset($_POST['id'])){
         echo "Sorry, record could not be deleted";
     }
 }
-//Redirect("auth_services.php");
 header("Location: auth_services.php");
 
 
