@@ -2,7 +2,6 @@
 include_once 'header.php';
 require_once "config.php";
 $barber;
-
 $result = mysqli_query($mysqli,"SELECT * FROM services");
 ?>
 
@@ -22,6 +21,9 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
                         <div class="card" style="border-radius: 1rem;">
                             <div class="row g-0">
                                 <h3 style="text-align: center;">Paslaugos ir jų kainos </h3>
+                                <?php if(!empty($_SESSION['error']) ) { ?>
+                                <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
+                                <?php } $_SESSION['error'] = NULL ?>
                                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <?php if($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?> 
                                     <a href="add_service.php"><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pridėti naują paslaugą"></input></a><?php } ?>
@@ -30,6 +32,7 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
                                     <?php if($_SESSION["role"] != NULL){ ?> 
                                     <a href="reservation.php"><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 12px;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: -apple-system,system-ui,Roboto,Helvetica,Arial,sans-serif;font-size: 16px;font-weight: 500;line-height: 2.5;outline: transparent;padding: 0 1rem;text-align: center;text-decoration: none;transition: box-shadow .2s ease-in-out;user-select: none;-webkit-user-select: none;touch-action: manipulation;white-space: nowrap;" value="Registruotis"></input></a><?php } ?>
                                 </div>
+
                                 <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                     <thead>
                                         <tr style="height:60px;background:#FFED86;font-size:16px;">

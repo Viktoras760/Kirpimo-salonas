@@ -61,7 +61,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["personal_code"] = $personal_code;
                             $_SESSION["email"] = $email;
-                            $_SESSION["role"] = $role;                            
+                            $_SESSION["role"] = $role;
+                            $_SESSION["error"] = NULL;
+                            $_SESSION["success"] = NULL;                            
                             
                             // Redirect user to main page
                             header("location: /kirpimo-salonas/");
