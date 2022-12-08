@@ -25,7 +25,7 @@ session_start();
     <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="#">Registruotis</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="login.php">Registruotis</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="services.php">Paslaugos</a>
@@ -49,7 +49,7 @@ session_start();
   <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="#">Registruotis</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="reservation.php">Registruotis</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="auth_services.php">Paslaugos</a>
@@ -76,7 +76,7 @@ session_start();
   <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="#">Registruotis</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="reservation.php">Registruotis</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="auth_services.php">Paslaugos</a>

@@ -5,12 +5,13 @@
   require_once "config.php";
    
   // Define variables and initialize with empty values
-  $name = $price = $duration = $barber = $description = $password ="";
+  $name = $price = $duration = $barber = $description = $password = $tag="";
   $name_err = $price_err = $duration_err = $barber_err = $description_err = $password_err = "";
   if($_SESSION["role"] == 'Barber'){
     $barber = $_SESSION['personal_code'];
   }
   $barb = mysqli_query($mysqli,"SELECT * FROM users");
+  $tags = mysqli_query($mysqli,"SELECT * FROM services");
 
   // Processing form data when form is submitted
   if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -75,34 +76,38 @@
     if($_SESSION["role"] == 'Admin'){
         if(empty(trim($_POST["barber"])))
         {
-        $barber_err = "Pasirinkite kirpėją.";    
+            $barber_err = "Pasirinkite kirpėją.";    
         } 
 
         else
         {
-        $barber = trim($_POST["barber"]);
+            $barber = trim($_POST["barber"]);
         }
     }
+
+    //------------------------------------------------------------------------------------
+    //Validate barber
+
+    $tag = trim($_POST["tag"]);
+
     //------------------------------------------------------------------------------------
     // Check input errors before inserting in database
     if(empty($name_err) && empty($price_err) && empty($barber_err) && empty($duration_err) && empty($description_err) && empty($password_err)){
         
       // Prepare an insert statement
-      $sql = "INSERT INTO services (Name, Price, Duration, Description, fk_Barber_code) VALUES ( ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO services (Name, Price, Duration, Description, Tags, fk_Barber_code) VALUES ( ?, ?, ?, ?, ?, ?)";
         
       if($stmt = $mysqli->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("sssss", $param_name, $param_price, $param_duration, $param_description, $param_barber,);
+        $stmt->bind_param("ssssss", $param_name, $param_price, $param_duration, $param_description, $param_tag, $param_barber,);
         
         // Set parameters
         $param_name = $name;
         $param_price = $price;
         $param_duration = $duration;
         $param_description = $description;
+        $param_tag = $tag;
         $param_barber = $barber;
-
-        
-        echo $param_name, $param_price, $param_duration, $param_description, $param_barber;
         
         // Attempt to execute the prepared statement
         if($stmt->execute()){
@@ -188,7 +193,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Aprašymas</label>
-                        <input type="text" name="description" placeholder = "Įveskite paslaugos aprašymą" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $description; ?>"/>
+                        <textarea class="form-control form-control-lg " name="description" id="description" cols="40" rows="3"><?php echo $description; ?></textarea>
                       </div>
 
                       <?php if($_SESSION["role"] == 'Admin'){ ?>
@@ -202,6 +207,17 @@
                         </select>
                       </div>
                       <?php } ?>
+
+                      <div class="form-outline mb-4">
+                      <label for="tag">Paslaugos tipas:</label>
+                        <select name="tag" id="tag">
+                          <option value="" <?php $tag = ""; ?>> </option>
+                          <option value="Vyriškas kirpimas" <?php $tag = "Vyriškas kirpimas"; ?>>Vyriškas kirpimas</option>
+                          <option value="Moteriškas kirpimas" <?php $tag = "Moteriškas kirpimas"; ?>>Moteriškas kirpimas</option>
+                          <option value="Vyriškas plaukų dažymas" <?php $tag = "Vyriškas plaukų dažymas"; ?>>Vyriškas plaukų dažymas</option>
+                          <option value="Moteriškas plaukų dažymas" <?php $tag = "Moteriškas plaukų dažymas"; ?>>Moteriškas plaukų dažymas</option>
+                        </select>
+                      </div>
 
                       <div class="pt-1 mb-4">
                         <input type="submit" name="submit" class="btn btn-dark btn-lg btn-block" value="Pridėti">  

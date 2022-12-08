@@ -9,7 +9,7 @@
 
   if ($_SERVER['HTTP_REFERER'])
   {
-    if ($_SERVER['HTTP_REFERER'] != "http://localhost/kirpimo-salonas/edit_services.php"){
+    if ($_SERVER['HTTP_REFERER'] != "http://localhost/kirpimo-salonas/edit_auth_service.php"){
         $serviceId = (int)$_POST['id'];
         $_SESSION['temp'] = $serviceId;
         $_SERVER["REQUEST_METHOD"] == "GET";
@@ -26,7 +26,11 @@
   $service = mysqli_query($mysqli,"SELECT * FROM services WHERE id_Services = '$serviceId'");
   $row = mysqli_fetch_array($service);
 
-  $_SESSION['serBarber'] = $us = $row['fk_Barber_code'];
+  if (!$_SESSION['serBarber'])
+  {
+    $_SESSION['serBarber'] = $us = $row['fk_Barber_code'];
+  }
+  $us = $_SESSION['serBarber'];
 
   $barb2 = mysqli_query($mysqli,"SELECT * FROM users WHERE Personal_code = '$us'");
   $row2 = mysqli_fetch_array($barb2);
@@ -35,6 +39,7 @@
   $_SESSION['serPrice'] = $price = $row['Price'];
   $_SESSION['serDuration'] = $duration = $row['Duration'];
   $_SESSION['serDescription'] = $description = $row['Description'];
+  $tag1 = $row['Tags'];
   $barber1 = $row2['Name'];
   
   $barb = mysqli_query($mysqli,"SELECT * FROM users");
@@ -92,8 +97,7 @@
     }
 
     //------------------------------------------------------------------------------------
-    //Validate aprašymą
-
+    //Validate description
     $description = trim($_POST["description"]);
 
     //------------------------------------------------------------------------------------
@@ -110,7 +114,7 @@
         }
     }
     //------------------------------------------------------------------------------------
-// Check input errors before inserting in database
+    // Check input errors before inserting in database
 
     // Prepare an insert statement
     $serviceId = $_SESSION['temp'];
@@ -118,18 +122,18 @@
     $param_price = $price;
     $param_duration = $duration;
     $param_description = $description;
-    $param_barber = $barber1;
 
-    $update = mysqli_query($mysqli,"UPDATE services SET Name = '$param_name', Price = '$param_price', Duration = '$param_duration', Description = '$param_description', fk_Barber_code = '$param_barber' WHERE id_Services = $serviceId");
+
+    $update = mysqli_query($mysqli,"UPDATE services SET Name = '$param_name', Price = '$param_price', Duration = '$param_duration', Description = '$param_description' WHERE id_Services = $serviceId");
     
     if (!$update)
     {
-        //header('Location: ' . $_SERVER['HTTP_REFERER']);
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
     else 
     {
-       $_SESSION['temp'] = NULL;
-        header("Location: auth_services.php");
+      $_SESSION['temp'] = NULL;
+      header("Location: auth_services.php");
     }
     
   }
@@ -153,7 +157,7 @@
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                  <?php if($_SESSION["role"] == 'Barber' && $_SESSION["personal_code"] != $us){
+                  <?php if($_SESSION["role"] == 'Barber' && $_SESSION["personal_code"] != $_SESSION['serBarber']){
                     ?>
 
                   <form method="POST">
@@ -180,12 +184,17 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Aprašymas</label>
-                    <input readonly type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $description; ?>"/>
+                    <textarea readonly class="form-control form-control-lg " name="description" id="description" cols="40" rows="3"><?php echo $description; ?></textarea>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Kirpėjas</label>
-                    <input readonly type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                    <input readonly type="text" name="barber" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label">Kirpimo tipas</label>
+                    <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
                   </div>
 
                   <div class="pt-1 mb-4">
@@ -199,10 +208,10 @@
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         
-                        <span class="h1 fw-bold mb-0">Paslaugos kūrimas</span>
+                        <span class="h1 fw-bold mb-0">Paslaugos atnaujinimas</span>
                       </div>
 
-                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Pridėkite naują paslaugą</h5>
+                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Atnaujinkite paslaugos informaciją</h5>
 
                       <?php if(!empty($name_err) ) { ?>
          
@@ -243,7 +252,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Aprašymas</label>
-                        <input type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $description; ?>"/>
+                        <textarea class="form-control form-control-lg " name="description" id="description" cols="40" rows="3"><?php echo $description; ?></textarea>
                       </div>
 
                       <?php if($_SESSION["role"] == 'Admin'){ ?>
@@ -262,13 +271,18 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpėjas</label>
-                        <input type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                        <input type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
                       </div>
 
                       <?php } ?>
 
+                      <div class="form-outline mb-4">
+                        <label for="tag">Paslaugos tipas:</label>
+                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
+                      </div>
+
                       <div class="pt-1 mb-4">
-                        <input type="submit" name="submit"  class="btn btn-dark btn-lg btn-block" value="Pridėti">  
+                        <input type="submit" name="submit"  class="btn btn-dark btn-lg btn-block" value="Atnaujinti paslaugą">  
                       </div>
                     </form>
                     <?php } ?>

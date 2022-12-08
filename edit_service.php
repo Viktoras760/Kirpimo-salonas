@@ -33,6 +33,7 @@
   $_SESSION['serDuration'] = $duration = $row['Duration'];
   $_SESSION['serDescription'] = $description = $row['Description'];
   $barber1 = $row2['Name'];
+  $tag1 = $row['Tags'];
   
   $barb = mysqli_query($mysqli,"SELECT * FROM users");
 ?>
@@ -58,7 +59,6 @@
                     <form method="POST">
 
                       <div class="d-flex align-items-center mb-3 pb-1">
-                        
                         <span class="h1 fw-bold mb-0">Paslaugos detalesnė informacija</span>
                       </div>
                       
@@ -79,16 +79,21 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Aprašymas</label>
-                        <input readonly type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $description; ?>"/>
+                        <textarea readonly class="form-control form-control-lg " name="description" id="description" cols="40" rows="3"><?php echo $description; ?></textarea>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpėjas</label>
-                        <input readonly type="text" name="description" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label">Kirpimo tipas</label>
+                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
                       </div>
 
                       <div class="pt-1 mb-4">
-                        <input type="submit" name="submit"  class="btn btn-dark btn-lg btn-block" value="Grįžti">  
+                        <a href ="services.php"><input class="btn btn-dark btn-lg btn-block" value="Grįžti"/></a>
                       </div>
                     </form>
 
