@@ -4,6 +4,7 @@ include_once "auth_session.php";
 require_once "config.php";
 $barber;
 $type;
+$_SESSION['month'] = $_SESSION['day'] = $_SESSION['time'] = NULL;
 $result = mysqli_query($mysqli,"SELECT * FROM services");
 $result2 = mysqli_query($mysqli,"SELECT * FROM services");
 if ($_POST)
@@ -37,6 +38,9 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                                 <?php if(!empty($_SESSION['error']) ) { ?>
                                 <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
                                 <?php } $_SESSION['error'] = NULL ?>
+                                <?php if(!empty($_SESSION['success']) ) { ?>
+                                <div class="alert alert-danger"><?php echo $_SESSION['success']; ?></div>
+                                <?php } $_SESSION['success'] = NULL ?>
                                 <div class="col-md-6 col-lg-3 d-none d-md-block">
                                     <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                         <thead>
