@@ -214,8 +214,8 @@
                           <option value="" <?php $tag = ""; ?>> </option>
                           <option value="Vyriškas kirpimas" <?php $tag = "Vyriškas kirpimas"; ?>>Vyriškas kirpimas</option>
                           <option value="Moteriškas kirpimas" <?php $tag = "Moteriškas kirpimas"; ?>>Moteriškas kirpimas</option>
-                          <option value="Vyriškas plaukų dažymas" <?php $tag = "Vyriškas plaukų dažymas"; ?>>Vyriškas plaukų dažymas</option>
-                          <option value="Moteriškas plaukų dažymas" <?php $tag = "Moteriškas plaukų dažymas"; ?>>Moteriškas plaukų dažymas</option>
+                          <option value="Vyriškas plaukų dažymas" <?php $tag = "Plaukų dažymas (vyrams)"; ?>>Vyriškas plaukų dažymas</option>
+                          <option value="Moteriškas plaukų dažymas" <?php $tag = "Plaukų dažymas (moterims)"; ?>>Moteriškas plaukų dažymas</option>
                         </select>
                       </div>
 

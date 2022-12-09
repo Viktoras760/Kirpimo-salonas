@@ -9,20 +9,24 @@ if(isset($_POST['id'])){
         if (!empty($_POST['id']))
         {
             $user1 = mysqli_query($mysqli,"SELECT * FROM services WHERE fk_Barber_code='$user' AND id_Services='$serviceId'");
-            if ($user1 == 1)
+            $row = mysqli_fetch_array($user1);
+            if ($row['Personal_code'] != $user)
             {
                 $_SESSION['error'] = "Ši paslauga priklauso kitam kirpėjui";
                 header("Location: auth_services.php");
             }
+            else{
+                $delete = mysqli_query($mysqli,"DELETE FROM services WHERE id_Services='$serviceId'");
+            }
         }
     }
-    if(!empty($_POST['id'])){
+    else if(!empty($_POST['id'])){
         $delete = mysqli_query($mysqli,"DELETE FROM services WHERE id_Services='$serviceId'");
     }
     if($delete){
-        echo "Record deleted successfully";
+        echo "Paslauga ištrinta sėkmingai";
     }else{
-        echo "Sorry, record could not be deleted";
+        echo "Atsiprašome, paslauga negali būti ištrinta";
     }
 }
 header("Location: auth_services.php");

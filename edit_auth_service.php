@@ -271,7 +271,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpėjas</label>
-                        <input type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
                       </div>
 
                       <?php } ?>
