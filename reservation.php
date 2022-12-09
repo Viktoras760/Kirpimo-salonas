@@ -45,10 +45,21 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                            <?php if ($type = "Moteriškas kirpimas")
+                                            <?php if ($type == "Moteriškas kirpimas")
                                             { ?>
+                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
                                             <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Moteriškas kirpimas";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Moteriškas kirpimas"></form></td>
+                                            </tr> 
+                                            <?php } else { ?>
+
+                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Moteriškas kirpimas";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Moteriškas kirpimas"></form></td>
+                                            </tr>
+                                            <?php } ?>
+
+                                            <?php if ($type == "Vyriškas kirpimas")
+                                            { ?>
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Vyriškas kirpimas";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas kirpimas"></form></td>
                                             </tr> 
                                             <?php } else { ?>
 
@@ -57,17 +68,27 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                                             </tr>
                                             <?php } ?>
 
-                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Vyriškas kirpimas";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas kirpimas"></form></td>
+                                            <?php if ($type == "Plaukų dažymas (vyrams)")
+                                            { ?>
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (vyrams)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas plaukų dažymas"></form></td>
                                             </tr> 
+                                            <?php } else { ?>
 
                                             <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (vyrams)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Moteriškas plaukų dažymas"></form></td>
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (vyrams)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas plaukų dažymas"></form></td>
+                                            </tr>
+                                            <?php } ?>
+
+                                            <?php if ($type == "Plaukų dažymas (moterims)")
+                                            { ?>
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (moterims)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Plaukų dažymas (moterims)"></form></td>
                                             </tr> 
+                                            <?php } else { ?>
 
                                             <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (moterims)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas plaukų dažymas"></form></td>
-                                            </tr> 
+                                            <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (moterims)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Plaukų dažymas (moterims)"></form></td>
+                                            </tr>
+                                            <?php } ?>
                                     
                                         </tbody>
                                     </table>
