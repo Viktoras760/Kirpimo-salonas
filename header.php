@@ -58,7 +58,7 @@ session_start();
           <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
         </li>
     <li class="nav-item">
-      <a class="nav-link mx-2" href="reservations.php">Mano rezervacijos</a>
+      <a class="nav-link mx-2" href="my_reservations.php">Mano rezervacijos</a>
     </li>
   </ul>
       <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
@@ -85,7 +85,7 @@ session_start();
           <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
         </li>
         <li class="nav-item">
-      <a class="nav-link mx-2" href="reservations.php">Mano rezervacijos</a>
+      <a class="nav-link mx-2" href="my_reservations.php">Mano rezervacijos</a>
     </li>
     <li class="nav-item">
       <a class="nav-link mx-2" href="schedule.php">Kirpimų grafikas</a>
