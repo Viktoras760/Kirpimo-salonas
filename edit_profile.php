@@ -7,28 +7,14 @@
   // Define variables and initialize with empty values
   $name_err = $surname_err = $personal_code_err = $gender_err = $email_err = $password_err = $role_err = "";
 
-  if ($_SERVER['HTTP_REFERER'])
-  {
-    if ($_SERVER['HTTP_REFERER'] != "http://localhost/kirpimo-salonas/edit_user.php"){
-        $userId = (int)$_POST['id'];
-        $_SESSION['temp'] = $userId;
-        $_SERVER["REQUEST_METHOD"] == "GET";
-    }
-  }
-  else if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
-  {
-    header("Location: login.php");
-  } 
-  else header("Location: /kirpimo-salonas/");
 
-
-  $userId = $_SESSION['temp'];
+  $userId = $_SESSION['personal_code'];
 
   $user = mysqli_query($mysqli,"SELECT * FROM users WHERE Personal_code = '$userId'");
   $row = mysqli_fetch_array($user);
   $email = $row['Email'];
 
-  if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] != "http://localhost/kirpimo-salonas/users.php"){
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate name
     if(empty(trim($_POST["name"])))
@@ -43,7 +29,11 @@
 
     else
     {
-      $name = trim($_POST["name"]);
+        if (trim($_POST["name"]) != "")
+        {
+            
+            $name = trim($_POST["name"]);
+        }
     }
 
     //------------------------------------------------------------------------------------
@@ -144,13 +134,13 @@
     // Check input errors before inserting in database
     if(empty($name_err) && empty($surname_err) && empty($gender_err) && empty($personal_code_err) && empty($email_err) && empty($password_err)){
       // Prepare an insert statement
-      $userId = $_SESSION['temp'];
+      $userId = $_SESSION['personal_code'];
       $param_name = $name;
       $param_surname = $surname;
       $param_email = $email;
-      $param_role = $role;
 
-      $update = mysqli_query($mysqli,"UPDATE users SET Name = '$param_name', Surname = '$param_surname', Email = '$param_email', Role = '$param_role' WHERE Personal_code = $userId");
+
+      $update = mysqli_query($mysqli,"UPDATE users SET Name = '$param_name', Surname = '$param_surname', Email = '$param_email' WHERE Personal_code = $userId");
       
       if (!$update)
       {
@@ -158,8 +148,7 @@
       }
       else 
       {
-        $_SESSION['temp'] = NULL;
-        header("Location: users.php");
+        header("Location: profile.php");
       }
     }
   }
@@ -237,13 +226,8 @@
 
                   <div class="form-outline mb-4">
                       <label for="role">Rolė:</label>
-                        <select name="role" id="role">
-                          <option value="<?php echo $row['Role']; ?>" <?php $role = $row['Role']; ?>><?php echo $row['Role']; ?> </option>
-                          <option value="Client" <?php $role = "Client"; ?>>Klientas</option>
-                          <option value="Barber" <?php $role = "Barber"; ?>>Kirpėjas</option>
-                          <option value="Admin" <?php $role = "Admin"; ?>>Administratorius</option>
-                        </select>
-                      </div>
+                      <input readonly type="text" name="role"  class="form-control form-control-lg " value="<?php echo $row['Role']; ?>"/>
+                    </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Lytis</label>
