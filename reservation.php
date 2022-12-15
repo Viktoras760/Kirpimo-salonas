@@ -34,7 +34,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                     <div class="col col-xl-10">
                         <div class="card" style="border-radius: 1rem;">
                             <div class="row g-0">
-                                <h3 style="text-align: center;">Paslaugos ir jų kainos </h3>
+                                <h3 style="text-align: center;">Paslaugų rezervacija</h3>
                                 <?php if(!empty($_SESSION['error']) ) { ?>
                                 <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
                                 <?php } $_SESSION['error'] = NULL ?>

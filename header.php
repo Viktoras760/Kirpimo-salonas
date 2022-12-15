@@ -72,7 +72,37 @@ session_start();
     </div>
   </div>
 </nav>
-<?php } elseif($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?>
+<?php } elseif($_SESSION["role"] == 'Barber'){ ?>
+  <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="reservation.php">Registruotis</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="auth_services.php">Paslaugos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="contacts.php">Kontaktai</a>
+        </li>
+        <li class="nav-item">
+      <a class="nav-link mx-2" href="my_reservations.php">Mano rezervacijos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link mx-2" href="schedule.php">Kirpimų grafikas</a>
+    </li>
+  </ul>
+      <ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="profile.php" target="blank">Mano paskyra</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link text-light h5" href="logout.php" target="blank">Atsijungti</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<?php } elseif ( $_SESSION["role"] == 'Admin'){  ?>
   <div class=" collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
