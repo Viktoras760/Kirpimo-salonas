@@ -18,7 +18,6 @@ else
 }
 $reservations = mysqli_query($mysqli,"SELECT * FROM reservation WHERE fk_UserPersonal_code = '$user'");
 $date = date('Y-m-d h:i:s');
-echo $type;
 ?>
 
 <!DOCTYPE html>
