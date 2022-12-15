@@ -9,6 +9,7 @@ if ($_POST && $_SERVER['HTTP_REFERER'] == "http://localhost/kirpimo-salonas/rese
 {
     $serviceID = $_POST['id'];
     $_SESSION['serviceID'] = $serviceID;
+    $_SESSION['year'] = NULL;
 }
 else 
 {
@@ -16,6 +17,7 @@ else
     $day = $_SESSION['day'];
     $serviceID = $_SESSION['serviceID'];
 }
+$year = $cur_year = date('Y');
 $result = mysqli_query($mysqli,"SELECT * FROM services WHERE id_Services = $serviceID");
 $row = mysqli_fetch_array($result);
 $_SESSION['barbID'] = $barberID = $row['fk_Barber_code'];
@@ -27,6 +29,11 @@ $row = mysqli_fetch_array($result);
 $barber = $row['Name'];
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://localhost/kirpimo-salonas/time_reservation.php"){
+
+    if (trim($_POST["year"]))
+    {
+        $_SESSION['year'] = $year = trim($_POST["year"]);
+    }
 
     if (trim($_POST["month"]))
     {
@@ -71,6 +78,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                     </div>
                                     <form method="post" action="time_reservation.php">
                                         
+                                        <div class="form-outline mb-3">
+                                                <label for="year">Pasirinkite rezervacijos metus</label>
+                                                    <select name="year" id="year">
+                                                    <option value=""<?php echo $year = $_SESSION['year']; ?>><?php echo $year; ?></option>
+                                                    <option <?php $year = $cur_year; ?> value="<?php echo $year;?>"><?php echo $cur_year; ?></option>
+                                                    <option <?php $year = $cur_year + 1; ?> value="<?php echo $year;?>"><?php echo $cur_year + 1; ?></option>
+                                                    <option <?php $year = $cur_year + 2; ?> value="<?php echo $year;?>"><?php echo $cur_year + 2; ?></option>
+                                                    </select>
+                                            </div>
+
                                             <div class="form-outline mb-3">
                                                 <label for="month">Pasirinkite rezervacijos mėnesį</label>
                                                     <select name="month" id="month">
@@ -130,25 +147,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                                 </div>
                                             </div>
                                             <td><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pateikti laisvus laikus"></form></td>
-                                            <?php if ($_SESSION['month'] && $_SESSION['day']) { ?>
+                                            <?php if ($_SESSION['month'] && $_SESSION['day']) {  ?>
+                                                
                                             <form method="post" action="reserv.php">
                                                 <div class="form-outline mb-3">
                                                     <label for="time">Pasirinkite rezervacijos laiką</label>
+                                                        
+                                                            <?php $m = $_SESSION['month'];
+                                                            $d = $_SESSION['day'];
+                                                            $hours = array();
+                                                            $reservations = mysqli_query($mysqli,"SELECT HOUR(Start_time), HOUR(End_time) FROM reservation WHERE MONTH(Start_time) = '$m' AND DAY(Start_time) = '$d' AND fk_Barber_code = $barberID"); 
+                                                            while($row3 = mysqli_fetch_array($reservations)){
+                                                                array_push($hours, $row3['0'], $row3['1']);
+                                                            }
+                                                            ?>
                                                         <select name="time" id="time">
                                                         <option value="" <?php echo $time = $_SESSION['time']; ?>><?php echo $time ?></option>
+                                                        <?php if (!in_array(9, $hours)) { ?>
                                                         <option value="9:00:00" <?php $time = "9:00:00"; ?>>9:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(10, $hours)) { ?>
                                                         <option value="10:00:00" <?php $time = "10:00:00"; ?>>10:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(11, $hours)) { ?>
                                                         <option value="11:00:00" <?php $time = "11:00:00"; ?>>11:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(12, $hours)) { ?>
                                                         <option value="12:00:00" <?php $time = "12:00:00"; ?>>12:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(13, $hours)) { ?>
                                                         <option value="13:00:00" <?php $time = "13:00:00"; ?>>13:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(14, $hours)) { ?>
                                                         <option value="14:00:00" <?php $time = "14:00:00"; ?>>14:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(15, $hours)) { ?>
                                                         <option value="15:00:00" <?php $time = "15:00:00"; ?>>15:00:00</option>
+                                                        <?php } ?> <?php if (!in_array(9, $hours)) { ?>
                                                         <option value="16:00:00" <?php $time = "16:00:00"; ?>>16:00:00</option>
+                                                        <?php } ?>
+                                                        <?php if (!in_array(17, $hours)) { ?>
                                                         <option value="17:00:00" <?php $time = "17:00:00"; ?>>17:00:00</option>
+                                                        <?php } ?>
                                                         </select>
                                                 </div>
 
-                                            <td><input type="hidden" name="duration" value='<?php echo $_SESSION['duration'];?>'><input type="hidden" name="service" value='<?php echo $_SESSION['serviceID'];?>'><input type="hidden" name="month" value='<?php echo $_SESSION['month'];?>'><input type="hidden" name="day" value='<?php echo $_SESSION['day'];?>'><input type="hidden" name="barbID" value='<?php echo $_SESSION['barbID'];?>'><input type="submit" name="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Rezervuoti laiką"></form></td>
+                                            <td><input type="hidden" name="duration" value='<?php echo $_SESSION['duration'];?>'><input type="hidden" name="year" value='<?php echo $_SESSION['year'];?>'><input type="hidden" name="service" value='<?php echo $_SESSION['serviceID'];?>'><input type="hidden" name="month" value='<?php echo $_SESSION['month'];?>'><input type="hidden" name="day" value='<?php echo $_SESSION['day'];?>'><input type="hidden" name="barbID" value='<?php echo $_SESSION['barbID'];?>'><input type="submit" name="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Rezervuoti laiką"></form></td>
                                         <?php } ?>
                                 </div>
                                 <div class="col-md-6 col-lg-1 d-none d-md-block">

@@ -8,6 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["time"]))
     {
         $_SESSION['time'] = $time = trim($_POST["time"]);
     }
+    if (trim($_POST["year"]))
+    {
+        $_SESSION['year'] = $year = trim($_POST["year"]);
+    }
     if (trim($_POST["month"]))
     {
         $month = trim($_POST["month"]);
@@ -36,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["time"]))
       $stmt->bind_param("ssss", $datetime, $datetime2, $barbID, $user);
       
       // Set parameters
-      $year = date("Y");
       $time2 = date('H:i:s', strtotime($time. ' +'.$duration.' minutes'));
       $datetime = "$year-$month-$day $time";
       $datetime2 = "$year-$month-$day $time2";
