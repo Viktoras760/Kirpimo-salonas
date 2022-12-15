@@ -134,7 +134,7 @@
     //Validate role
     if(empty(trim($_POST["role"])))
     {
-      $role_err = "Pasirinkite lytį.";    
+      $role_err = "Pasirinkite rolę.";    
     } 
 
     else
