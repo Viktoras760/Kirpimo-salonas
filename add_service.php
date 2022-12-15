@@ -6,11 +6,11 @@
    
   // Define variables and initialize with empty values
   $name = $price = $duration = $barber = $description = $password = $tag="";
-  $name_err = $price_err = $duration_err = $barber_err = $description_err = $password_err = "";
+  $name_err = $price_err = $duration_err = $barber_err = $description_err = $password_err = $tag_err = "";
   if($_SESSION["role"] == 'Barber'){
     $barber = $_SESSION['personal_code'];
   }
-  $barb = mysqli_query($mysqli,"SELECT * FROM users");
+  $barb = mysqli_query($mysqli,"SELECT * FROM users WHERE Role = 'Barber'");
   $tags = mysqli_query($mysqli,"SELECT * FROM services");
 
   // Processing form data when form is submitted
@@ -86,9 +86,16 @@
     }
 
     //------------------------------------------------------------------------------------
-    //Validate barber
+    //Validate tag
 
-    $tag = trim($_POST["tag"]);
+    if(empty(trim($_POST["tag"])))
+    {
+      $tag_err = "Pasirinkite kirpėją.";    
+    } 
+    else
+    {
+      $tag = trim($_POST["tag"]);
+    }
 
     //------------------------------------------------------------------------------------
     // Check input errors before inserting in database
@@ -174,6 +181,10 @@
 
                         <div class="alert alert-danger"><?php echo $barber_err; ?></div>
 
+                        <?php } elseif(!empty($tag_err) ) { ?>
+
+                        <div class="alert alert-danger"><?php echo $tag_err; ?></div>
+
                       <?php } ?>
                       
                       <div class="form-outline mb-4">
@@ -214,8 +225,8 @@
                           <option value="" <?php $tag = ""; ?>> </option>
                           <option value="Vyriškas kirpimas" <?php $tag = "Vyriškas kirpimas"; ?>>Vyriškas kirpimas</option>
                           <option value="Moteriškas kirpimas" <?php $tag = "Moteriškas kirpimas"; ?>>Moteriškas kirpimas</option>
-                          <option value="Vyriškas plaukų dažymas" <?php $tag = "Plaukų dažymas (vyrams)"; ?>>Vyriškas plaukų dažymas</option>
-                          <option value="Moteriškas plaukų dažymas" <?php $tag = "Plaukų dažymas (moterims)"; ?>>Moteriškas plaukų dažymas</option>
+                          <option value="Plaukų dažymas (vyrams)" <?php $tag = "Plaukų dažymas (vyrams)"; ?>>Vyriškas plaukų dažymas</option>
+                          <option value="Plaukų dažymas (moterims)" <?php $tag = "Plaukų dažymas (moterims)"; ?>>Moteriškas plaukų dažymas</option>
                         </select>
                       </div>
 
@@ -223,7 +234,7 @@
                         <input type="submit" name="submit" class="btn btn-dark btn-lg btn-block" value="Pridėti">  
                       </div>
                     </form>
-
+                    <form action="auth_services.php" method="POST"><input type="submit" class="btn btn-dark btn-lg btn-block" value="Grįžti"></form>
                   </div>
                 </div>
               </div>

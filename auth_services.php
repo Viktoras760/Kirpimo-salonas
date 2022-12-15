@@ -3,7 +3,10 @@ include_once 'header.php';
 include_once "auth_session.php";
 require_once "config.php";
 $barber;
+$userID = $_SESSION['personal_code'];
 $result = mysqli_query($mysqli,"SELECT * FROM services");
+$user = mysqli_query($mysqli,"SELECT * FROM users WHERE Personal_code = '$userID'");
+$row3 = mysqli_fetch_array($user);
 ?>
 
 <!DOCTYPE html>
@@ -71,8 +74,10 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
                                         } ?>
                                         <td title="Kirpėjas"> <?php echo $barber ?> </td>
                                         <td><form method="POST" action="edit_auth_service.php"><input type="hidden" name="id" value='<?php echo $row['id_Services'];?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Paslaugos aprašymas"></form></td>
-                                        <td><form method="POST" action="delete_service.php"><input type="hidden" name="id" value='<?php echo $row['id_Services'];?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Ištrinti paslaugą"></form></td>
-                                    </tr> 
+                                        <?php if($row3['Role'] == "Barber" || $row3['Role'] == "Admin") { ?>
+                                        <td><form method="POST" action="delete_service.php"><input type="hidden" name="id" value='<?php echo $row['id_Services'];?>'><button onclick="return confirm('Ar Jūs įsitikinę, kad norite ištrinti šią paslaugą?')" type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;">Ištrinti</button></form></td>
+                                            <?php } ?>
+                                        </tr> 
                                     <?php } ?> 
                                     </tbody>
                                 </table>

@@ -8,9 +8,9 @@ if(isset($_POST['id'])){
     if ($_SESSION["role"] == 'Barber') {
         if (!empty($_POST['id']))
         {
-            $user1 = mysqli_query($mysqli,"SELECT * FROM services WHERE fk_Barber_code='$user' AND id_Services='$serviceId'");
-            $row = mysqli_fetch_array($user1);
-            if ($row['Personal_code'] != $user)
+            $service = mysqli_query($mysqli,"SELECT * FROM services WHERE id_Services='$serviceId'");
+            $row = mysqli_fetch_array($service);
+            if ($row['fk_Barber_code'] != $user)
             {
                 $_SESSION['error'] = "Ši paslauga priklauso kitam kirpėjui";
                 header("Location: auth_services.php");

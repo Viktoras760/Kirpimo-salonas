@@ -26,7 +26,7 @@
   $service = mysqli_query($mysqli,"SELECT * FROM services WHERE id_Services = '$serviceId'");
   $row = mysqli_fetch_array($service);
 
-  if (!$_SESSION['serBarber'])
+  if (!isset($_SESSION["serBarber"]))
   {
     $_SESSION['serBarber'] = $us = $row['fk_Barber_code'];
   }
@@ -157,7 +157,7 @@
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                  <?php if($_SESSION["role"] == 'Barber' && $_SESSION["personal_code"] != $_SESSION['serBarber']){
+                  <?php if(($_SESSION["role"] == 'Barber' && $_SESSION["personal_code"] != $_SESSION['serBarber']) || $_SESSION["role"] == 'Client'){
                     ?>
 
                   <form method="POST">
@@ -286,7 +286,7 @@
                       </div>
                     </form>
                     <?php } ?>
-
+                    <form action="auth_services.php" method="POST"><input type="submit" class="btn btn-dark btn-lg btn-block" value="Grįžti"></form>
                   </div>
                 </div>
               </div>
