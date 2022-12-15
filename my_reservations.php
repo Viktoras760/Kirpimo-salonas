@@ -8,6 +8,7 @@ $_SESSION['month'] = $_SESSION['day'] = $_SESSION['time'] = NULL;
 $result = mysqli_query($mysqli,"SELECT * FROM services");
 $result2 = mysqli_query($mysqli,"SELECT * FROM services");
 $user = $_SESSION['personal_code'];
+$cur_time = date('Y-m-d h:i:s');
 if ($_POST)
 {
     $type = $_POST['id'];
@@ -18,6 +19,7 @@ else
 }
 $reservations = mysqli_query($mysqli,"SELECT * FROM reservation WHERE fk_UserPersonal_code = '$user'");
 $date = date('Y-m-d h:i:s');
+//echo '<script>confirm("Welcome to Geeks for Geeks")</script>';
 ?>
 
 <!DOCTYPE html>
@@ -123,6 +125,9 @@ $date = date('Y-m-d h:i:s');
                                                     $stmt->close();
                                                 } ?>
                                                 <td title="Kirpėjas"> <?php echo $barber ?> </td>
+                                                <?php if ($row['Start_time'] > $cur_time) { ?>
+                                                    <td><form method="POST" action="delete_my_reservation.php"><input type="hidden" name="id" value='<?php echo $row['id_Reservation'];?>'><button onclick="return confirm('Ar Jūs įsitikinę, kad norite ištrinti rezervaciją?')" type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;">Ištrinti</button></form></td>
+                                                <?php } ?>
                                             </tr> 
                                             <?php } } else if ($type == "Ateinančios rezervacijos") {
                                                 $reservations = mysqli_query($mysqli,"SELECT * FROM reservation WHERE fk_UserPersonal_code = '$user' AND End_time >= '$date'");
@@ -158,6 +163,9 @@ $date = date('Y-m-d h:i:s');
                                                     $stmt->close();
                                                 } ?>
                                                 <td title="Kirpėjas"> <?php echo $barber ?> </td>
+                                                <?php if ($row['Start_time'] > $cur_time) { ?>
+                                                    <td><form method="POST" action="delete_my_reservation.php"><input type="hidden" name="id" value='<?php echo $row['id_Reservation'];?>'><button onclick="return confirm('Ar Jūs įsitikinę, kad norite ištrinti rezervaciją?')" type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;">Ištrinti</button></form></td>
+                                                <?php } ?>
                                             </tr> 
                                             <?php  } } 
                                             else if ($type == "Praėjusios rezervacijos") {
