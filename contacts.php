@@ -8,6 +8,7 @@ include_once 'header.php';
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>V&R kirpimo salonas</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +25,11 @@ include_once 'header.php';
                     <div class="card-body p-4 p-lg-5 text-black">
                         <p><strong>V & R </strong> Kirpykla</p>
                         <p>A. Mapu gatvė 6a, Kaunas</p>
-                        <p>&#x2022 Kontaktai:
-                        <br>Rytis: +37065555555 | Viktorija: +37066666666</br>
+                        <p>&#x2022; Kontaktai:
+                        <br>Rytis: +37065555555 | Viktorija: +37066666666
                         El. paštas: vandr.kaunas@gmail.com 
-                        <br><p>&#x2022 Darbo laikas:
-                        <br>I-V 10:00-19:00 | VI 9:00-16.00 | VII nedirbame</p></br>
+                        <br><p>&#x2022; Darbo laikas:
+                        <br>I-V 10:00-19:00 | VI 9:00-16.00 | VII nedirbame</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-5 d-flex align-items-center">

@@ -166,8 +166,9 @@
 ?>
    
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>V&R kirpimo salonas</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -217,37 +218,37 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Vardas</label>
-                    <input type="text" name="name" class="form-control form-control-lg " value="<?php echo $row['Name'];?>" />
+                    <input type="text" name="name" class="form-control form-control-lg " value="<?php echo $row['Name'];?>" >
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Pavardė</label>
-                    <input type="text" name="surname"  class="form-control form-control-lg " value="<?php echo $row['Surname']; ?>"/>
+                    <input type="text" name="surname"  class="form-control form-control-lg " value="<?php echo $row['Surname']; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Asmens kodas</label>
-                    <input readonly type="number" name="personal_code"  class="form-control form-control-lg " value="<?php echo $row['Personal_code']; ?>"/>
+                    <input readonly type="number" name="personal_code"  class="form-control form-control-lg " value="<?php echo $row['Personal_code']; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">El. paštas</label>
-                    <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg " <?php $email = $row['Email']; ?> value="<?php echo $row['Email']; ?>"/>
+                    <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą"  class="form-control form-control-lg " <?php $email = $row['Email']; ?> value="<?php echo $row['Email']; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
-                      <label for="role">Rolė:</label>
+                      <label>Rolė:</label>
                         <select name="role" id="role">
-                          <option value="<?php echo $row['Role']; ?>" <?php $role = $row['Role']; ?>><?php echo $row['Role']; ?> </option>
-                          <option value="Client" <?php $role = "Client"; ?>>Klientas</option>
-                          <option value="Barber" <?php $role = "Barber"; ?>>Kirpėjas</option>
-                          <option value="Admin" <?php $role = "Admin"; ?>>Administratorius</option>
+                          <option value="<?php echo $row['Role']; ?>"><?php $role = $row['Role']; ?><?php echo $row['Role']; ?>. </option>
+                          <option value="Client">Klientas <?php $role = "Client"; ?></option>
+                          <option value="Barber">Kirpėjas <?php $role = "Barber"; ?></option>
+                          <option value="Admin" >Administratorius <?php $role = "Admin"; ?></option>
                         </select>
                       </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Lytis</label>
-                    <input readonly type="text" name="gender" class="form-control form-control-lg " value="<?php echo $row['Gender']; ?>"/>
+                    <input readonly type="text" name="gender" class="form-control form-control-lg " value="<?php echo $row['Gender']; ?>">
                   </div>
 
                   <div class="pt-1 mb-4">
@@ -260,7 +261,6 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
   </body>
 </html>

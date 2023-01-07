@@ -140,8 +140,9 @@
 ?>
    
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>V&R kirpimo salonas</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -169,32 +170,32 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Paslaugos pavadinimas</label>
-                    <input readonly type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                    <input readonly type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" >
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Kaina (eurais)</label>
-                    <input readonly type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>"/>
+                    <input readonly type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Trukmė (minutėmis)</label>
-                    <input readonly type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>"/>
+                    <input readonly type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Aprašymas</label>
-                    <textarea readonly class="form-control form-control-lg " name="description" id="description" cols="40" rows="3"><?php echo $description; ?></textarea>
+                    <textarea readonly class="form-control form-control-lg " name="description"  cols="40" rows="3"><?php echo $description; ?></textarea>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Kirpėjas</label>
-                    <input readonly type="text" name="barber" autocomplete="new-description" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                    <input readonly type="text" name="barber"  class="form-control form-control-lg " value="<?php echo $barber1; ?>">
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label">Kirpimo tipas</label>
-                    <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
+                    <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>">
                   </div>
 
                   <div class="pt-1 mb-4">
@@ -237,17 +238,17 @@
                       
                       <div class="form-outline mb-4">
                         <label class="form-label">Paslaugos pavadinimas</label>
-                        <input type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                        <input type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" >
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kaina</label>
-                        <input type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>"/>
+                        <input type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Trukmė</label>
-                        <input type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>"/>
+                        <input type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
@@ -259,9 +260,9 @@
                       <div class="form-outline mb-4">
                       <label for="barber">Kirpėjas:</label>
                         <select name="barber" id="barber">
-                          <option value="" <?php $barber = ""; ?>> </option>
+                          <option value="" >_ <?php $barber = ""; ?></option>
                           <?php while($bar = mysqli_fetch_array($barb)){ ?>
-                          <option value="<?php echo $bar['Personal_code'];?>"><?php echo $bar['Name']; ?></option>
+                          <option value="<?php echo $bar['Personal_code'];?>"><?php echo $bar['Name']; ?>.</option>
                           <?php } ?>
                         </select>
                       </div>
@@ -271,29 +272,28 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpėjas</label>
-                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>">
                       </div>
 
                       <?php } ?>
 
                       <div class="form-outline mb-4">
-                        <label for="tag">Paslaugos tipas:</label>
-                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
+                        <label>Paslaugos tipas:</label>
+                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>">
                       </div>
 
                       <div class="pt-1 mb-4">
                         <input type="submit" name="submit"  class="btn btn-dark btn-lg btn-block" value="Atnaujinti paslaugą">  
                       </div>
                     </form>
-                    <?php } ?>
                     <form action="auth_services.php" method="POST"><input type="submit" class="btn btn-dark btn-lg btn-block" value="Grįžti"></form>
+                    <?php } ?>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
   </body>
 </html>

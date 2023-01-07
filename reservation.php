@@ -22,6 +22,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                                 <div class="alert alert-danger"><?php echo $_SESSION['success']; ?></div>
                                 <?php } $_SESSION['success'] = NULL ?>
                                 <div class="col-md-6 col-lg-3 d-none d-md-block">
-                                    <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                    <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                         <thead>
                                             <tr style="height:60px;background:#f33333;font-size:16px;">
                                                 <th>Pasirinkite norimos paslaugos tipą</th>
@@ -63,6 +64,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
 
                                             <?php if ($type == "Vyriškas kirpimas")
                                             { ?>
+                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
                                             <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Vyriškas kirpimas";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas kirpimas"></form></td>
                                             </tr> 
                                             <?php } else { ?>
@@ -74,6 +76,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
 
                                             <?php if ($type == "Plaukų dažymas (vyrams)")
                                             { ?>
+                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
                                             <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (vyrams)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Vyriškas plaukų dažymas"></form></td>
                                             </tr> 
                                             <?php } else { ?>
@@ -85,6 +88,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
 
                                             <?php if ($type == "Plaukų dažymas (moterims)")
                                             { ?>
+                                            <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
                                             <td><form method="POST" action="reservation.php"><input type="hidden" name="id" value='<?php echo "Plaukų dažymas (moterims)";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Plaukų dažymas (moterims)"></form></td>
                                             </tr> 
                                             <?php } else { ?>
@@ -99,7 +103,7 @@ $services = mysqli_query($mysqli,"SELECT * FROM services WHERE Tags = '$type'");
                                 </div>
                                 <div class="col-md-6 col-lg-9 d-none d-md-block">
 
-                                    <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                    <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                         <thead>
                                             <tr style="height:60px;background:#FFED86;font-size:16px;">
                                                 <th>Paslauga</th>

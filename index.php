@@ -1,7 +1,12 @@
 <?php
   include_once 'header.php';
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>V&R kirpimo salonas</title>
+  </head>
+  <body>
   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item">

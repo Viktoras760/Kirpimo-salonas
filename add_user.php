@@ -230,9 +230,10 @@
   }
 ?>
    
-   <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+      <title>V&R kirpimo salonas</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -289,47 +290,47 @@
                       
                       <div class="form-outline mb-4">
                         <label class="form-label">Vardas</label>
-                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                        <input type="text" name="name" placeholder = "Įveskite savo vardą" class="form-control form-control-lg " value="<?php echo $name; ?>" >
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Pavardė</label>
-                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg " value="<?php echo $surname; ?>"/>
+                        <input type="text" name="surname" placeholder = "Įveskite savo pavardę" class="form-control form-control-lg " value="<?php echo $surname; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                       <label for="gender">Lytis:</label>
                         <select name="gender" id="gender">
-                          <option value="" <?php $gender = ""; ?>> </option>
-                          <option value="Male" <?php $gender = "Male"; ?>>Vyras</option>
-                          <option value="Female" <?php $gender = "Female"; ?>>Moteris</option>
-                          <option value="Other" <?php $gender = "Other"; ?>>Kita</option>
+                          <option value="" ><?php $gender = ""; ?>_ </option>
+                          <option value="Male" ><?php $gender = "Male"; ?>Vyras</option>
+                          <option value="Female" ><?php $gender = "Female"; ?>Moteris</option>
+                          <option value="Other" ><?php $gender = "Other"; ?>Kita</option>
                         </select>
                       </div>
 
                       <div class="form-outline mb-4">
                       <label for="role">Rolė:</label>
                         <select name="role" id="role">
-                          <option value="" <?php $role = ""; ?>> </option>
-                          <option value="Client" <?php $role = "Client"; ?>>Klientas</option>
-                          <option value="Barber" <?php $role = "Barber"; ?>>Kirpėjas</option>
-                          <option value="Admin" <?php $role = "Admin"; ?>>Administratorius</option>
+                          <option value="" ><?php $role = ""; ?>_ </option>
+                          <option value="Client" ><?php $role = "Client"; ?>Klientas</option>
+                          <option value="Barber" ><?php $role = "Barber"; ?>Kirpėjas</option>
+                          <option value="Admin" ><?php $role = "Admin"; ?>Administratorius</option>
                         </select>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Asmens kodas</label>
-                        <input type="number" name="personal_code" placeholder = "Įveskite savo asmens kodą" class="form-control form-control-lg " value="<?php echo $personal_code; ?>"/>
+                        <input type="number" name="personal_code" placeholder = "Įveskite savo asmens kodą" class="form-control form-control-lg " value="<?php echo $personal_code; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">El. paštas</label>
-                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą" autocomplete="new-email" class="form-control form-control-lg " value="<?php echo $email; ?>"/>
+                        <input type="email" name="email" placeholder = "Įveskite savo elektroninį paštą"  class="form-control form-control-lg " value="<?php echo $email; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Slaptažodis</label>
-                        <input type="password" name="password" autocomplete="new-password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg" value="<?php echo $password; ?>" />
+                        <input type="password" name="password" placeholder = "Įveskite būsimą paskyros slaptažodį" class="form-control form-control-lg" value="<?php echo $password; ?>" >
                       </div>
 
                       <div class="pt-1 mb-4">
@@ -343,7 +344,6 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
   </body>
 </html>

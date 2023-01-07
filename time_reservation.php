@@ -51,6 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                     <svg height="24" width="24" viewBox="0 0 24 24" class="EmployeeSelect-module_avatar_f8203f" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" fill="currentColor"><path d="M17.6 13.714A9.987 9.987 0 0122 22h-2a8 8 0 00-4.124-7 8.026 8.026 0 001.724-1.286zM12 2a6 6 0 01.225 11.996L12 14a8 8 0 00-8 8H2c0-4.21 2.603-7.814 6.287-9.288A6 6 0 0112 2zm0 2C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" fill-rule="evenodd"></path></svg>
                                     <label class="form-label">Jūsų kirpėjas: </label>
                                     
-                                    <input readonly type="text" name="barber" class="form-control form-control-lg "  value="<?php echo $barber; ?>"/>
+                                    <input readonly type="text" name="barber" class="form-control form-control-lg "  value="<?php echo $barber; ?>">
                             
                                     <div class="form-outline mb-2" >
                                     </div>
@@ -81,29 +82,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                         <div class="form-outline mb-3">
                                                 <label for="year">Pasirinkite rezervacijos metus</label>
                                                     <select name="year" id="year">
-                                                    <option value=""<?php echo $year = $_SESSION['year']; ?>><?php echo $year; ?></option>
-                                                    <option <?php $year = $cur_year; ?> value="<?php echo $year;?>"><?php echo $cur_year; ?></option>
-                                                    <option <?php $year = $cur_year + 1; ?> value="<?php echo $year;?>"><?php echo $cur_year + 1; ?></option>
-                                                    <option <?php $year = $cur_year + 2; ?> value="<?php echo $year;?>"><?php echo $cur_year + 2; ?></option>
+                                                    <option value=""<?php echo $year = $_SESSION['year']; ?>><?php echo $year; ?>.</option>
+                                                    <option  value="<?php echo $year;?>"><?php $year = $cur_year; ?><?php echo $cur_year; ?>.</option>
+                                                    <option  value="<?php echo $year;?>"><?php $year = $cur_year + 1; ?><?php echo $cur_year + 1; ?>.</option>
+                                                    <option  value="<?php echo $year;?>"><?php $year = $cur_year + 2; ?><?php echo $cur_year + 2; ?>.</option>
                                                     </select>
                                             </div>
 
                                             <div class="form-outline mb-3">
                                                 <label for="month">Pasirinkite rezervacijos mėnesį</label>
                                                     <select name="month" id="month">
-                                                    <option value="" <?php echo $month = $_SESSION['month']; ?>><?php echo $month ?></option>
-                                                    <option value="01" <?php $month = "01"; ?>>Sausis</option>
-                                                    <option value="02" <?php $month = "02"; ?>>Vasaris</option>
-                                                    <option value="03" <?php $month = "03"; ?>>Kovas</option>
-                                                    <option value="04" <?php $month = "04"; ?>>Balandis</option>
-                                                    <option value="05" <?php $month = "05"; ?>>Gegužė</option>
-                                                    <option value="06" <?php $month = "06"; ?>>Birželis</option>
-                                                    <option value="07" <?php $month = "07"; ?>>Liepa</option>
-                                                    <option value="08" <?php $month = "08"; ?>>Rugpjūtis</option>
-                                                    <option value="09" <?php $month = "09"; ?>>Rugsėjis</option>
-                                                    <option value="10" <?php $month = "10"; ?>>Spalis</option>
-                                                    <option value="11" <?php $month = "11"; ?>>Lapkritis</option>
-                                                    <option value="12" <?php $month = "12"; ?>>Gruodis</option>
+                                                    <option value="" ><?php $month = $_SESSION['month']; ?><?php echo $month ?>.</option>
+                                                    <option value="01" ><?php $month = "01"; ?>Sausis</option>
+                                                    <option value="02" ><?php $month = "02"; ?>Vasaris</option>
+                                                    <option value="03" ><?php $month = "03"; ?>Kovas</option>
+                                                    <option value="04" ><?php $month = "04"; ?>Balandis</option>
+                                                    <option value="05" ><?php $month = "05"; ?>Gegužė</option>
+                                                    <option value="06" ><?php $month = "06"; ?>Birželis</option>
+                                                    <option value="07" ><?php $month = "07"; ?>Liepa</option>
+                                                    <option value="08" ><?php $month = "08"; ?>Rugpjūtis</option>
+                                                    <option value="09" ><?php $month = "09"; ?>Rugsėjis</option>
+                                                    <option value="10" ><?php $month = "10"; ?>Spalis</option>
+                                                    <option value="11" ><?php $month = "11"; ?>Lapkritis</option>
+                                                    <option value="12" ><?php $month = "12"; ?>Gruodis</option>
                                                     </select>
                                             </div>
 
@@ -111,42 +112,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                                 <div class="form-outline mb-2">
                                                     <label for="day">Pasirinkite rezervacijos dieną</label>
                                                         <select name="day" id="day">
-                                                            <option value="" <?php echo $day = $_SESSION['day']; ?>><?php echo $_SESSION['day'] ?></option>
-                                                            <option value="1" <?php $day = "1"; ?>>1</option>
-                                                            <option value="2" <?php $day = "2"; ?>>2</option>
-                                                            <option value="3" <?php $day = "3"; ?>>3</option>
-                                                            <option value="4" <?php $day = "4"; ?>>4</option>
-                                                            <option value="5" <?php $day = "5"; ?>>5</option>
-                                                            <option value="6" <?php $day = "6"; ?>>6</option>
-                                                            <option value="7" <?php $day = "7"; ?>>7</option>
-                                                            <option value="8" <?php $day = "8"; ?>>8</option>
-                                                            <option value="9" <?php $day = "9"; ?>>9</option>
-                                                            <option value="10" <?php $day = "10"; ?>>10</option>
-                                                            <option value="11" <?php $day = "11"; ?>>11</option>
-                                                            <option value="12" <?php $day = "12"; ?>>12</option>
-                                                            <option value="13" <?php $day = "13"; ?>>13</option>
-                                                            <option value="14" <?php $day = "14"; ?>>14</option>
-                                                            <option value="15" <?php $day = "15"; ?>>15</option>
-                                                            <option value="16" <?php $day = "16"; ?>>16</option>
-                                                            <option value="17" <?php $day = "17"; ?>>17</option>
-                                                            <option value="18" <?php $day = "18"; ?>>18</option>
-                                                            <option value="19" <?php $day = "19"; ?>>19</option>
-                                                            <option value="20" <?php $day = "20"; ?>>20</option>
-                                                            <option value="21" <?php $day = "21"; ?>>21</option>
-                                                            <option value="22" <?php $day = "22"; ?>>22</option>
-                                                            <option value="23" <?php $day = "23"; ?>>23</option>
-                                                            <option value="24" <?php $day = "24"; ?>>24</option>
-                                                            <option value="25" <?php $day = "25"; ?>>25</option>
-                                                            <option value="26" <?php $day = "26"; ?>>26</option>
-                                                            <option value="27" <?php $day = "27"; ?>>27</option>
-                                                            <option value="28" <?php $day = "28"; ?>>28</option>
-                                                            <option value="29" <?php $day = "29"; ?>>29</option>
-                                                            <option value="30" <?php $day = "30"; ?>>30</option>
-                                                            <option value="31" <?php $day = "31"; ?>>31</option>
+                                                            <option value="" ><?php $day = $_SESSION['day']; ?><?php echo $_SESSION['day'] ?>.</option>
+                                                            <option value="1" ><?php $day = "1"; ?>1</option>
+                                                            <option value="2" ><?php $day = "2"; ?>2</option>
+                                                            <option value="3" ><?php $day = "3"; ?>3</option>
+                                                            <option value="4" ><?php $day = "4"; ?>4</option>
+                                                            <option value="5" ><?php $day = "5"; ?>5</option>
+                                                            <option value="6" ><?php $day = "6"; ?>6</option>
+                                                            <option value="7" ><?php $day = "7"; ?>7</option>
+                                                            <option value="8" ><?php $day = "8"; ?>8</option>
+                                                            <option value="9" ><?php $day = "9"; ?>9</option>
+                                                            <option value="10" ><?php $day = "10"; ?>10</option>
+                                                            <option value="11" ><?php $day = "11"; ?>11</option>
+                                                            <option value="12" ><?php $day = "12"; ?>12</option>
+                                                            <option value="13" ><?php $day = "13"; ?>13</option>
+                                                            <option value="14" ><?php $day = "14"; ?>14</option>
+                                                            <option value="15" ><?php $day = "15"; ?>15</option>
+                                                            <option value="16" ><?php $day = "16"; ?>16</option>
+                                                            <option value="17" ><?php $day = "17"; ?>17</option>
+                                                            <option value="18" ><?php $day = "18"; ?>18</option>
+                                                            <option value="19" ><?php $day = "19"; ?>19</option>
+                                                            <option value="20" ><?php $day = "20"; ?>20</option>
+                                                            <option value="21" ><?php $day = "21"; ?>21</option>
+                                                            <option value="22" ><?php $day = "22"; ?>22</option>
+                                                            <option value="23" ><?php $day = "23"; ?>23</option>
+                                                            <option value="24" ><?php $day = "24"; ?>24</option>
+                                                            <option value="25" ><?php $day = "25"; ?>25</option>
+                                                            <option value="26" ><?php $day = "26"; ?>26</option>
+                                                            <option value="27" ><?php $day = "27"; ?>27</option>
+                                                            <option value="28" ><?php $day = "28"; ?>28</option>
+                                                            <option value="29" ><?php $day = "29"; ?>29</option>
+                                                            <option value="30" ><?php $day = "30"; ?>30</option>
+                                                            <option value="31" ><?php $day = "31"; ?>31</option>
                                                         </select>
                                                 </div>
                                             </div>
-                                            <td><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pateikti laisvus laikus"></form></td>
+                                            <input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pateikti laisvus laikus"></form>
                                             <?php if ($_SESSION['month'] && $_SESSION['day']) {  ?>
                                                 
                                             <form method="post" action="reserv.php">
@@ -162,43 +163,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_SERVER['HTTP_REFERER'] == "http://l
                                                             }
                                                             ?>
                                                         <select name="time" id="time">
-                                                        <option value="" <?php echo $time = $_SESSION['time']; ?>><?php echo $time ?></option>
+                                                        <option value="" ><?php $time = $_SESSION['time']; ?><?php echo $time ?>.</option>
                                                         <?php if (!in_array(9, $hours)) { ?>
-                                                        <option value="9:00:00" <?php $time = "9:00:00"; ?>>9:00:00</option>
+                                                        <option value="9:00:00" ><?php $time = "9:00:00"; ?>9:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(10, $hours)) { ?>
-                                                        <option value="10:00:00" <?php $time = "10:00:00"; ?>>10:00:00</option>
+                                                        <option value="10:00:00" ><?php $time = "10:00:00"; ?>10:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(11, $hours)) { ?>
-                                                        <option value="11:00:00" <?php $time = "11:00:00"; ?>>11:00:00</option>
+                                                        <option value="11:00:00" ><?php $time = "11:00:00"; ?>11:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(12, $hours)) { ?>
-                                                        <option value="12:00:00" <?php $time = "12:00:00"; ?>>12:00:00</option>
+                                                        <option value="12:00:00" ><?php $time = "12:00:00"; ?>12:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(13, $hours)) { ?>
-                                                        <option value="13:00:00" <?php $time = "13:00:00"; ?>>13:00:00</option>
+                                                        <option value="13:00:00" ><?php $time = "13:00:00"; ?>13:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(14, $hours)) { ?>
-                                                        <option value="14:00:00" <?php $time = "14:00:00"; ?>>14:00:00</option>
+                                                        <option value="14:00:00" ><?php $time = "14:00:00"; ?>14:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(15, $hours)) { ?>
-                                                        <option value="15:00:00" <?php $time = "15:00:00"; ?>>15:00:00</option>
+                                                        <option value="15:00:00" ><?php $time = "15:00:00"; ?>15:00:00</option>
                                                         <?php } ?> <?php if (!in_array(9, $hours)) { ?>
-                                                        <option value="16:00:00" <?php $time = "16:00:00"; ?>>16:00:00</option>
+                                                        <option value="16:00:00" ><?php $time = "16:00:00"; ?>16:00:00</option>
                                                         <?php } ?>
                                                         <?php if (!in_array(17, $hours)) { ?>
-                                                        <option value="17:00:00" <?php $time = "17:00:00"; ?>>17:00:00</option>
+                                                        <option value="17:00:00" ><?php $time = "17:00:00"; ?>17:00:00</option>
                                                         <?php } ?>
                                                         </select>
                                                 </div>
 
-                                            <td><input type="hidden" name="duration" value='<?php echo $_SESSION['duration'];?>'><input type="hidden" name="year" value='<?php echo $_SESSION['year'];?>'><input type="hidden" name="service" value='<?php echo $_SESSION['serviceID'];?>'><input type="hidden" name="month" value='<?php echo $_SESSION['month'];?>'><input type="hidden" name="day" value='<?php echo $_SESSION['day'];?>'><input type="hidden" name="barbID" value='<?php echo $_SESSION['barbID'];?>'><input type="submit" name="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Rezervuoti laiką"></form></td>
+                                            <input type="hidden" name="duration" value='<?php echo $_SESSION['duration'];?>'><input type="hidden" name="year" value='<?php echo $_SESSION['year'];?>'><input type="hidden" name="service" value='<?php echo $_SESSION['serviceID'];?>'><input type="hidden" name="month" value='<?php echo $_SESSION['month'];?>'><input type="hidden" name="day" value='<?php echo $_SESSION['day'];?>'><input type="hidden" name="barbID" value='<?php echo $_SESSION['barbID'];?>'><input type="submit" name="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Rezervuoti laiką"></form>
                                         <?php } ?>
                                 </div>
                                 <div class="col-md-6 col-lg-1 d-none d-md-block">
                                 </div>
                                 <div class="col-md-6 d-none d-md-block">
-                                    <h3 style="color: #B4886B;font-weight: bold;display: block;width: max;text-align: center;">Jūsų rezervuojama paslauga:</h3>
+                                    <h3 style="color: #B4886B;font-weight: bold;display: block;text-align: center;">Jūsų rezervuojama paslauga:</h3>
                                     <ul class="responsive-table">
                                         <li class="table-row" style="border-radius: 3px;padding: 25px 30px;display: flex;justify-content: space-between;margin-bottom: 25px; background-color: #ffffff;box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);">
                                             <div class="col col-6" data-label="Job Id">Paslaugos pavadinimas</div>

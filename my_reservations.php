@@ -25,6 +25,7 @@ $date = date('Y-m-d h:i:s');
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,41 +43,41 @@ $date = date('Y-m-d h:i:s');
                                         
                                     <?php if ($type == "Visos rezervacijos")
                                     { ?>
-                                    <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Visos rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Visos rezervacijos"></form></td>
-                                    </tr> 
+                                    
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Visos rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Visos rezervacijos"></form>
+                                     
                                     <?php } else { ?>
 
-                                    <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Visos rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Visos rezervacijos"></form></td>
-                                    </tr>
+                                    
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Visos rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Visos rezervacijos"></form>
+                                    
                                     <?php } ?>
 
                                     <?php if ($type == "Ateinančios rezervacijos")
                                     { ?>
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Ateinančios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Ateinančios rezervacijos"></form></td>
-                                    </tr> 
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Ateinančios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Ateinančios rezervacijos"></form>
+                                     
                                     <?php } else { ?>
 
-                                    <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Ateinančios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Ateinančios rezervacijos"></form></td>
-                                    </tr>
+                                    
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Ateinančios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Ateinančios rezervacijos"></form>
+                                    
                                     <?php } ?>
 
                                     <?php if ($type == "Praėjusios rezervacijos")
                                     { ?>
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Praėjusios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Praėjusios rezervacijos"></form></td>
-                                    </tr> 
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Praėjusios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #f30303, #e50707);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Praėjusios rezervacijos"></form>
+                                     
                                     <?php } else { ?>
 
-                                    <tr style="height:48px; border-bottom:1px solid #E3F1D5 ;">
-                                    <td><form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Praėjusios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Praėjusios rezervacijos"></form></td>
-                                    </tr>
+                                    
+                                    <form method="POST" action="my_reservations.php"><input type="hidden" name="id" value='<?php echo "Praėjusios rezervacijos";?>'><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Praėjusios rezervacijos"></form>
+                                    
                                     <?php } ?>
                                 </div>
                                 <div class="col-md-6 col-lg-9 d-none d-md-block">
 
-                                    <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                    <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                         <thead>
                                             <tr style="height:60px;background:#FFED86;font-size:16px;">
                                                 <th>Paslauga</th>

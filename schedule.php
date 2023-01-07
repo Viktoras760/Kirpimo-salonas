@@ -60,6 +60,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +80,7 @@ else
 
                                 <div class="col-md-6 col-lg-4 d-none d-md-block">
                                     
-                                    <h3 style="color: #B4886B;font-weight: bold;display: block;width: max;text-align: center;">Pasirinkite norimą datą:</h3>
+                                    <h3 style="color: #B4886B;font-weight: bold;display: block;text-align: center;">Pasirinkite norimą datą:</h3>
 
                                     <div class="form-outline mb-2" ></div>
                                     <form method="post" action="schedule.php">
@@ -87,29 +88,29 @@ else
                                         <div class="form-outline mb-3">
                                             <label for="year">Pasirinkite norimus metus</label>
                                                 <select name="year" id="year">
-                                                <option value=""<?php echo $year = $_SESSION['year']; ?>><?php echo $year; ?></option>
-                                                <option <?php $year = $cur_year; ?> value="<?php echo $year;?>"><?php echo $cur_year; ?></option>
-                                                <option <?php $year = $cur_year + 1; ?> value="<?php echo $year;?>"><?php echo $cur_year + 1; ?></option>
-                                                <option <?php $year = $cur_year + 2; ?> value="<?php echo $year;?>"><?php echo $cur_year + 2; ?></option>
+                                                <option value=""<?php echo $year = $_SESSION['year']; ?>><?php echo $year; ?>_</option>
+                                                <option value="<?php echo $year;?>"><?php $year = $cur_year; ?><?php echo $cur_year; ?>.</option>
+                                                <option value="<?php echo $year;?>"><?php $year = $cur_year + 1; ?><?php echo $cur_year + 1; ?>.</option>
+                                                <option value="<?php echo $year;?>"><?php $year = $cur_year + 2; ?><?php echo $cur_year + 2; ?>.</option>
                                                 </select>
                                         </div>
 
                                         <div class="form-outline mb-3">
                                             <label for="month">Pasirinkite norimą mėnesį</label>
                                                 <select name="month" id="month">
-                                                <option value="" <?php echo $month = $_SESSION['month']; ?>><?php echo $month ?></option>
-                                                <option value="01" <?php $month = "01"; ?>>Sausis</option>
-                                                <option value="02" <?php $month = "02"; ?>>Vasaris</option>
-                                                <option value="03" <?php $month = "03"; ?>>Kovas</option>
-                                                <option value="04" <?php $month = "04"; ?>>Balandis</option>
-                                                <option value="05" <?php $month = "05"; ?>>Gegužė</option>
-                                                <option value="06" <?php $month = "06"; ?>>Birželis</option>
-                                                <option value="07" <?php $month = "07"; ?>>Liepa</option>
-                                                <option value="08" <?php $month = "08"; ?>>Rugpjūtis</option>
-                                                <option value="09" <?php $month = "09"; ?>>Rugsėjis</option>
-                                                <option value="10" <?php $month = "10"; ?>>Spalis</option>
-                                                <option value="11" <?php $month = "11"; ?>>Lapkritis</option>
-                                                <option value="12" <?php $month = "12"; ?>>Gruodis</option>
+                                                <option value="" <?php echo $month = $_SESSION['month']; ?>><?php echo $month ?>_</option>
+                                                <option value="01"><?php $month = "01"; ?>Sausis</option>
+                                                <option value="02" ><?php $month = "02"; ?>Vasaris</option>
+                                                <option value="03" ><?php $month = "03"; ?>Kovas</option>
+                                                <option value="04" ><?php $month = "04"; ?>Balandis</option>
+                                                <option value="05" ><?php $month = "05"; ?>Gegužė</option>
+                                                <option value="06" ><?php $month = "06"; ?>Birželis</option>
+                                                <option value="07" ><?php $month = "07"; ?>Liepa</option>
+                                                <option value="08" ><?php $month = "08"; ?>Rugpjūtis</option>
+                                                <option value="09" ><?php $month = "09"; ?>Rugsėjis</option>
+                                                <option value="10" ><?php $month = "10"; ?>Spalis</option>
+                                                <option value="11" ><?php $month = "11"; ?>Lapkritis</option>
+                                                <option value="12" ><?php $month = "12"; ?>Gruodis</option>
                                                 </select>
                                         </div>
 
@@ -117,46 +118,46 @@ else
                                             <div class="form-outline mb-2">
                                                 <label for="day">Pasirinkite norimą dieną</label>
                                                     <select name="day" id="day">
-                                                        <option value="" <?php echo $day = $_SESSION['day']; ?>><?php echo $_SESSION['day'] ?></option>
-                                                        <option value="1" <?php $day = "1"; ?>>1</option>
-                                                        <option value="2" <?php $day = "2"; ?>>2</option>
-                                                        <option value="3" <?php $day = "3"; ?>>3</option>
-                                                        <option value="4" <?php $day = "4"; ?>>4</option>
-                                                        <option value="5" <?php $day = "5"; ?>>5</option>
-                                                        <option value="6" <?php $day = "6"; ?>>6</option>
-                                                        <option value="7" <?php $day = "7"; ?>>7</option>
-                                                        <option value="8" <?php $day = "8"; ?>>8</option>
-                                                        <option value="9" <?php $day = "9"; ?>>9</option>
-                                                        <option value="10" <?php $day = "10"; ?>>10</option>
-                                                        <option value="11" <?php $day = "11"; ?>>11</option>
-                                                        <option value="12" <?php $day = "12"; ?>>12</option>
-                                                        <option value="13" <?php $day = "13"; ?>>13</option>
-                                                        <option value="14" <?php $day = "14"; ?>>14</option>
-                                                        <option value="15" <?php $day = "15"; ?>>15</option>
-                                                        <option value="16" <?php $day = "16"; ?>>16</option>
-                                                        <option value="17" <?php $day = "17"; ?>>17</option>
-                                                        <option value="18" <?php $day = "18"; ?>>18</option>
-                                                        <option value="19" <?php $day = "19"; ?>>19</option>
-                                                        <option value="20" <?php $day = "20"; ?>>20</option>
-                                                        <option value="21" <?php $day = "21"; ?>>21</option>
-                                                        <option value="22" <?php $day = "22"; ?>>22</option>
-                                                        <option value="23" <?php $day = "23"; ?>>23</option>
-                                                        <option value="24" <?php $day = "24"; ?>>24</option>
-                                                        <option value="25" <?php $day = "25"; ?>>25</option>
-                                                        <option value="26" <?php $day = "26"; ?>>26</option>
-                                                        <option value="27" <?php $day = "27"; ?>>27</option>
-                                                        <option value="28" <?php $day = "28"; ?>>28</option>
-                                                        <option value="29" <?php $day = "29"; ?>>29</option>
-                                                        <option value="30" <?php $day = "30"; ?>>30</option>
-                                                        <option value="31" <?php $day = "31"; ?>>31</option>
+                                                        <option value="" ><?php $day = $_SESSION['day']; ?><?php echo $_SESSION['day'] ?>_</option>
+                                                        <option value="1" ><?php $day = "1"; ?>1</option>
+                                                        <option value="2" ><?php $day = "2"; ?>2</option>
+                                                        <option value="3" ><?php $day = "3"; ?>3</option>
+                                                        <option value="4" ><?php $day = "4"; ?>4</option>
+                                                        <option value="5" ><?php $day = "5"; ?>5</option>
+                                                        <option value="6" ><?php $day = "6"; ?>6</option>
+                                                        <option value="7" ><?php $day = "7"; ?>7</option>
+                                                        <option value="8" ><?php $day = "8"; ?>8</option>
+                                                        <option value="9" ><?php $day = "9"; ?>9</option>
+                                                        <option value="10" ><?php $day = "10"; ?>10</option>
+                                                        <option value="11" ><?php $day = "11"; ?>11</option>
+                                                        <option value="12" ><?php $day = "12"; ?>12</option>
+                                                        <option value="13" ><?php $day = "13"; ?>13</option>
+                                                        <option value="14" ><?php $day = "14"; ?>14</option>
+                                                        <option value="15" ><?php $day = "15"; ?>15</option>
+                                                        <option value="16" ><?php $day = "16"; ?>16</option>
+                                                        <option value="17" ><?php $day = "17"; ?>17</option>
+                                                        <option value="18" ><?php $day = "18"; ?>18</option>
+                                                        <option value="19" ><?php $day = "19"; ?>19</option>
+                                                        <option value="20" ><?php $day = "20"; ?>20</option>
+                                                        <option value="21" ><?php $day = "21"; ?>21</option>
+                                                        <option value="22" ><?php $day = "22"; ?>22</option>
+                                                        <option value="23" ><?php $day = "23"; ?>23</option>
+                                                        <option value="24" ><?php $day = "24"; ?>24</option>
+                                                        <option value="25" ><?php $day = "25"; ?>25</option>
+                                                        <option value="26" ><?php $day = "26"; ?>26</option>
+                                                        <option value="27" ><?php $day = "27"; ?>27</option>
+                                                        <option value="28" ><?php $day = "28"; ?>28</option>
+                                                        <option value="29" ><?php $day = "29"; ?>29</option>
+                                                        <option value="30" ><?php $day = "30"; ?>30</option>
+                                                        <option value="31" ><?php $day = "31"; ?>31</option>
                                                     </select>
                                             </div>
                                         </div>
-                                    <td><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pateikti pasirinktos dienos grafiką"></form></td>
+                                    <input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pateikti pasirinktos dienos grafiką"></form>
                                 </div>
                                 <div class="col-md-6 col-lg-8 d-none d-md-block">
-                                    <h3 style="color: #B4886B;font-weight: bold;display: block;width: max;text-align: center;"><?php echo $date?> grafikas:</h3>
-                                    <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                    <h3 style="color: #B4886B;font-weight: bold;display: block;text-align: center;"><?php echo $date?> grafikas:</h3>
+                                    <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                         <thead>
                                             <tr style="height:60px;background:#FFED86;font-size:16px;">
                                                 <th>Paslauga</th>

@@ -9,6 +9,7 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@ $result = mysqli_query($mysqli,"SELECT * FROM services");
                                 <h3 style="text-align: center;">Paslaugos ir jų kainos </h3>
                                 
                     
-                                <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                     <thead>
                                         <tr style="height:60px;background:#FFED86;font-size:16px;">
                                             <th>Paslauga</th>

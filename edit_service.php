@@ -39,8 +39,9 @@
 ?>
    
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>V&R kirpimo salonas</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -64,17 +65,17 @@
                       
                       <div class="form-outline mb-4">
                         <label class="form-label">Paslaugos pavadinimas</label>
-                        <input readonly type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                        <input readonly type="text" name="name" class="form-control form-control-lg " value="<?php echo $name; ?>" >
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kaina (eurais)</label>
-                        <input readonly type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>"/>
+                        <input readonly type="number" name="price"  class="form-control form-control-lg " value="<?php echo $price; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Trukmė (minutėmis)</label>
-                        <input readonly type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>"/>
+                        <input readonly type="number" name="duration"  class="form-control form-control-lg " value="<?php echo $duration; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
@@ -84,16 +85,16 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpėjas</label>
-                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>"/>
+                        <input readonly type="text" name="barber" class="form-control form-control-lg " value="<?php echo $barber1; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kirpimo tipas</label>
-                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>"/>
+                        <input readonly type="text" name="tag" class="form-control form-control-lg " value="<?php echo $tag1; ?>">
                       </div>
 
                       <div class="pt-1 mb-4">
-                        <a href ="services.php"><input class="btn btn-dark btn-lg btn-block" value="Grįžti"/></a>
+                        <a href ="services.php" class="btn btn-dark btn-lg btn-block"> Grįžti </a>
                       </div>
                     </form>
 
@@ -103,7 +104,6 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
   </body>
 </html>

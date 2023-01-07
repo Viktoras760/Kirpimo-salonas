@@ -135,8 +135,9 @@
 ?>
    
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+      <title>V&R kirpimo salonas</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -189,17 +190,17 @@
                       
                       <div class="form-outline mb-4">
                         <label class="form-label">Paslaugos pavadinimas</label>
-                        <input type="text" name="name" placeholder = "Įveskite paslaugos pavadinimą" class="form-control form-control-lg " value="<?php echo $name; ?>" />
+                        <input type="text" name="name" placeholder = "Įveskite paslaugos pavadinimą" class="form-control form-control-lg " value="<?php echo $name; ?>" >
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Kaina</label>
-                        <input type="number" name="price" placeholder = "Įveskite paslaugos kainą" class="form-control form-control-lg " value="<?php echo $price; ?>"/>
+                        <input type="number" name="price" placeholder = "Įveskite paslaugos kainą" class="form-control form-control-lg " value="<?php echo $price; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label">Trukmė</label>
-                        <input type="number" name="duration" placeholder = "Įveskite paslaugos trukmę (minutėmis)" class="form-control form-control-lg " value="<?php echo $duration; ?>"/>
+                        <input type="number" name="duration" placeholder = "Įveskite paslaugos trukmę (minutėmis)" class="form-control form-control-lg " value="<?php echo $duration; ?>">
                       </div>
 
                       <div class="form-outline mb-4">
@@ -211,9 +212,9 @@
                       <div class="form-outline mb-4">
                       <label for="barber">Kirpėjas:</label>
                         <select name="barber" id="barber">
-                          <option value="" <?php $barber = ""; ?>> </option>
+                          <option value="" >_ <?php $barber = ""; ?></option>
                           <?php while($bar = mysqli_fetch_array($barb)){ ?>
-                          <option value="<?php echo $bar['Personal_code'];?>"><?php echo $bar['Name']; ?></option>
+                          <option value="">_ <?php echo $bar['Personal_code'];?> <?php echo $bar['Name']; ?></option>
                           <?php } ?>
                         </select>
                       </div>
@@ -222,11 +223,11 @@
                       <div class="form-outline mb-4">
                       <label for="tag">Paslaugos tipas:</label>
                         <select name="tag" id="tag">
-                          <option value="" <?php $tag = ""; ?>> </option>
-                          <option value="Vyriškas kirpimas" <?php $tag = "Vyriškas kirpimas"; ?>>Vyriškas kirpimas</option>
-                          <option value="Moteriškas kirpimas" <?php $tag = "Moteriškas kirpimas"; ?>>Moteriškas kirpimas</option>
-                          <option value="Plaukų dažymas (vyrams)" <?php $tag = "Plaukų dažymas (vyrams)"; ?>>Vyriškas plaukų dažymas</option>
-                          <option value="Plaukų dažymas (moterims)" <?php $tag = "Plaukų dažymas (moterims)"; ?>>Moteriškas plaukų dažymas</option>
+                          <option value="">_ <?php $tag = ""; ?> </option>
+                          <option value="Vyriškas kirpimas">Vyriškas kirpimas <?php $tag = "Vyriškas kirpimas"; ?> </option> 
+                          <option value="Moteriškas kirpimas">Moteriškas kirpimas <?php $tag = "Moteriškas kirpimas"; ?></option>
+                          <option value="Plaukų dažymas (vyrams)">Vyriškas plaukų dažymas <?php $tag = "Plaukų dažymas (vyrams)"; ?></option>
+                          <option value="Plaukų dažymas (moterims)">Moteriškas plaukų dažymas <?php $tag = "Plaukų dažymas (moterims)"; ?></option>
                         </select>
                       </div>
 
@@ -241,7 +242,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
     </section>
   </body>
 </html>

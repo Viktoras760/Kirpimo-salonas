@@ -92,8 +92,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>V&R kirpimo salonas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <style>
         body{ font: 14px sans-serif; }
@@ -108,41 +109,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="card" style="border-radius: 1rem;">
               <div class="row g-0">
                 <div class="col-md-2 col-lg-5 d-none d-md-block">
-                  <img src="images/m.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" />
+                  <img src="images/m.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" >
                 </div>
                 <div class="col-md-4 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
 
-                    <form method="post">
+                    <form method="POST"> 
 
                       <div class="d-flex align-items-center mb-3 pb-1">
                         
                         <span class="h1 fw-bold mb-0">Prisijungti</span>
                       </div>
-
+                    
                       <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Prisijunkite prie savo paskyros</h5>
 
                       <?php if(!empty($login_err)){ echo '<div class="alert alert-danger">' . $login_err . '</div>';} ?>
 
                       <div class="form-outline mb-4">
-                        <label class="form-label" for="email">El. paštas</label>
-                        <input type="email" name="email" placeholder="Jūsų elektroninis paštas"  class="form-control form-control-lg" value="<?php echo $email; ?>"/>
+                        <label class="form-label" >El. paštas</label>
+                        <input type="email" name="email" placeholder="Jūsų elektroninis paštas"  class="form-control form-control-lg" value="<?php echo $email; ?>">
                         
                       </div>
 
                       <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Slaptažodis</label>
-                        <input type="password" name="password" placeholder="Jūsų slaptažodis" class="form-control form-control-lg" value="<?php echo $password; ?>"/>
+                        <label class="form-label" >Slaptažodis</label>
+                        <input type="password" name="password" placeholder="Jūsų slaptažodis" class="form-control form-control-lg" value="<?php echo $password; ?>">
                       </div>
 
                       <div class="pt-1 mb-4">
-                        <input type="submit" class="btn btn-dark btn-lg btn-block" value="Prisijungti"></input>
+                        <input type="submit" class="btn btn-dark btn-lg btn-block" value="Prisijungti">
                       </div>
 
                       <a class="small text-muted" href="#!">Pamiršote slaptažodį?</a>
-                      <p class="mb-5 pb-lg-2" style="color: #393f81;">Neturite paskyros? <a href="register.php"
-                          style="color: #393f81;">Registruokitės čia</a></p>
+                      <p class="mb-5 pb-lg-2" style="color: #393f81;">Neturite paskyros? 
+                        <a href="register.php" style="color: #393f81;">Registruokitės čia</a>
+                      </p>
                     </form>
+                    
                   </div>
                 </div>
               </div>

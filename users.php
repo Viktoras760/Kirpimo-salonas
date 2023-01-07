@@ -13,6 +13,7 @@ $users = mysqli_query($mysqli,"SELECT * FROM users");
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>V&R kirpimo salonas</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,10 +32,10 @@ $users = mysqli_query($mysqli,"SELECT * FROM users");
                                 <?php } $_SESSION['error'] = NULL ?>
                                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <?php if($_SESSION["role"] == 'Barber' || $_SESSION["role"] == 'Admin'){ ?> 
-                                    <a href="add_user.php"><input type="submit" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;" value="Pridėti naują vartotoją"></input></a><?php } ?>
+                                    <a href="add_user.php" style="background: linear-gradient(to bottom right, #EF4765, #FF9A5A);border-radius: 8px;border-style: none;box-sizing: border-box;color: #FFFFFF;cursor: pointer;display: inline-block;font-family: Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 500;height: 40px;line-height: 20px;list-style: none;margin: 0;outline: none;padding: 10px 16px;position: relative;text-align: center;text-decoration: none;transition: color 100ms;vertical-align: baseline;user-select: none;-webkit-user-select: none;touch-action: manipulation;">Pridėti naują vartotoją</a><?php } ?>
                                 </div>
 
-                                <table style="border-spacing: 1; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
+                                <table style="border-spacing: 1px; border-collapse: collapse; background:white;border-radius:6px;overflow:hidden; width:100%;margin:0 auto;position:relative;">
                                     <thead>
                                         <tr style="height:60px;background:#FFED86;font-size:16px;">
                                             <th>Vardas</th>
